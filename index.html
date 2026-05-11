@@ -961,6 +961,7 @@
       color: #fff;
       border-radius: 12px;
       padding: 22px 28px;
+      margin-top: 32px;
       margin-bottom: 24px;
     }
     .voc-trends-title {
@@ -995,6 +996,7 @@
     .voc-trend-badge.watch   { background: #f59e0b; color: #000; }
     .voc-trend-badge.trend   { background: #3b82f6; color: #fff; }
     .voc-trend-badge.stable  { background: #475569; color: #fff; }
+    .voc-trend-badge.insight { background: #6b7280; color: #fff; }
 
     /* ── VoC detail panel ── */
     .voc-week-card {
@@ -1200,6 +1202,69 @@
       font-style: italic;
       padding: 8px 0;
     }
+
+    /* ── Sub-topic Breakdown Charts (side by side) ── */
+    .voc-subtopic-row { display: flex; gap: 20px; margin-top: 40px; align-items: flex-start; flex-wrap: wrap; }
+    .voc-subtopic-panel { flex: 1; min-width: 280px; }
+    /* keep legacy class working */
+    .voc-shipping-chart-section { margin-top: 40px; }
+    .voc-shipping-chart-header {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px;
+    }
+    .voc-shipping-toggle-row {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .voc-shipping-toggle-label {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--text-muted); margin-right: 4px;
+    }
+    .voc-shipping-toggle {
+      font-size: 0.72rem; padding: 3px 10px; border-radius: 20px;
+      border: 1.5px solid var(--border); background: transparent;
+      color: var(--text-muted); cursor: pointer; transition: all 0.15s;
+    }
+    .voc-shipping-toggle:hover { border-color: var(--black); color: var(--black); }
+    .voc-shipping-toggle.active { background: var(--black); color: var(--white); border-color: var(--black); }
+    .voc-shipping-canvas-wrap {
+      background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border);
+      padding: 20px; position: relative; min-height: 300px;
+    }
+
+    /* ── Contact Reason Excel Upload ── */
+    .voc-reason-xlsx-strip {
+      background: var(--card-bg); border: 1.5px dashed var(--border); border-radius: 12px;
+      padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .voc-reason-xlsx-strip-left { flex: 1; min-width: 200px; }
+    .voc-reason-xlsx-strip-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 2px; }
+    .voc-reason-xlsx-strip-sub { font-size: 0.75rem; color: var(--text-muted); }
+    .voc-reason-xlsx-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .voc-reason-chart-section { margin-top: 32px; }
+    .voc-reason-chart-section-header {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px;
+    }
+    .voc-reason-level-tabs {
+      display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap;
+    }
+    .voc-reason-level-tab {
+      font-size: 0.72rem; padding: 3px 12px; border-radius: 20px;
+      border: 1.5px solid var(--border); background: transparent;
+      color: var(--text-muted); cursor: pointer; transition: all 0.15s;
+    }
+    .voc-reason-level-tab:hover { border-color: var(--black); color: var(--black); }
+    .voc-reason-level-tab.active { background: var(--black); color: var(--white); border-color: var(--black); }
+    .voc-reason-canvas-wrap {
+      background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border);
+      padding: 20px; position: relative; min-height: 320px;
+    }
+    /* Accordion drill-down table */
+    .rx-chevron { display: inline-block; font-size: 0.7rem; margin-right: 5px; transition: transform 0.15s; color: var(--text-muted); }
+    tr.rxl1-row:hover td, tr.rxl2-row:hover td { background: var(--warm-grey); }
+    tr.rxl2-row td:first-child { border-left: 3px solid var(--border); }
+    tr.rxl3-row td:first-child { border-left: 6px solid var(--greige); }
 
     /* ── Department Rollup ── */
     .dept-rollup-section {
@@ -1418,6 +1483,36 @@
       border-radius: 4px;
       padding: 7px 12px;
       margin-top: 6px;
+    }
+    .dept-week-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 5px;
+      margin-right: 6px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    .dept-l3-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2px 8px;
+      margin: 2px 3px 2px 0;
+      color: var(--text);
+    }
+    .dept-l3-vol {
+      font-weight: 700;
+      color: var(--text-muted);
+      font-size: 0.72rem;
     }
 
     @media (max-width: 768px) {
@@ -1711,12 +1806,12 @@
     </div>
   </div>
 
-  <!-- Upload strip (for fallback / manual upload) -->
-  <div class="scorecard-upload-strip" id="scorecardDropZone" style="margin-top:32px" onclick="document.getElementById('scorecardFileInput').click()">
+  <!-- Upload strip — bottom of tab -->
+  <div class="scorecard-upload-strip" id="scorecardDropZone" style="margin-top:48px" onclick="document.getElementById('scorecardFileInput').click()">
     <div class="sc-icon">📋</div>
     <div>
       <b id="scorecardDropLabel">Upload CS Metrics .xlsx to load agent data</b><br>
-      <span style="font-size:0.78rem;color:var(--text-muted)">Or drop the main CS Metrics file in the upload bar above</span>
+      <span style="font-size:0.78rem;color:var(--text-muted)">Or drop the main CS Metrics file in the upload bar at the bottom of the page</span>
     </div>
     <div class="upload-status" style="margin-left:auto">
       <div class="dot yellow" id="scStatusDot"></div>
@@ -1741,8 +1836,13 @@
 
 <div id="tabPaneVoc" style="display:none; padding: 0 40px 60px; max-width: 1400px; margin: 0 auto;">
 
-  <!-- Markdown upload strip -->
-  <div class="voc-upload-strip" id="vocUploadStrip">
+  <div id="vocSearchResults" style="display:none"></div>
+  <div id="vocDetailContent">
+    <p style="color:var(--text-muted);padding:40px 0;text-align:center">Upload the metrics file to load Voice of Customer data.</p>
+  </div>
+
+  <!-- Markdown upload strip — bottom of tab -->
+  <div class="voc-upload-strip" id="vocUploadStrip" style="margin-top:48px">
     <div class="voc-upload-left">
       <div class="voc-upload-title">Add VoC analysis from a markdown file</div>
       <div class="voc-upload-sub">Upload a .md file and assign it to a week — contact reasons, sentiment, quotes and takeaways will be parsed automatically</div>
@@ -1757,9 +1857,20 @@
     <div id="vocUploadStatus" style="font-size:0.78rem;color:var(--text-muted);min-width:120px;text-align:right"></div>
   </div>
 
-  <div id="vocSearchResults" style="display:none"></div>
-  <div id="vocDetailContent">
-    <p style="color:var(--text-muted);padding:40px 0;text-align:center">Upload the metrics file to load Voice of Customer data.</p>
+  <!-- Contact Reason Excel upload strip — bottom of tab -->
+  <div class="voc-reason-xlsx-strip" id="vocReasonXlsxStrip" style="margin-top:12px">
+    <div class="voc-reason-xlsx-strip-left">
+      <div class="voc-reason-xlsx-strip-title">Contact Reason Breakdown (Excel)</div>
+      <div class="voc-reason-xlsx-strip-sub">Upload the contact reason Excel file — select a week to assign it manually, or leave blank to auto-detect from column headers</div>
+    </div>
+    <div class="voc-reason-xlsx-controls">
+      <select id="vocReasonXlsxWeekSelect" class="voc-week-select">
+        <option value="">Week (auto-detect)</option>
+      </select>
+      <label class="btn" for="vocReasonXlsxInput" style="cursor:pointer">Choose .xlsx file</label>
+      <input type="file" id="vocReasonXlsxInput" accept=".xlsx,.xls,.csv" style="display:none" />
+    </div>
+    <div id="vocReasonXlsxStatus" style="font-size:0.78rem;color:var(--text-muted);min-width:120px;text-align:right"></div>
   </div>
 
 </div>
@@ -1767,11 +1878,16 @@
 <!-- ── One-off VoC Tab Panel ─────────────────────────────────────────────── -->
 <div id="tabPaneVocOneoff" style="display:none; padding: 0 40px 60px; max-width: 1400px; margin: 0 auto;">
 
-  <!-- Upload strip -->
-  <div class="voc-upload-strip">
+  <div id="vocOneoffSearchResults" style="display:none"></div>
+  <div id="vocOneoffContent" style="margin-top:20px">
+    <p style="color:var(--text-muted);padding:40px 0;text-align:center">No one-off summaries uploaded yet. Use the upload strip below to add one.</p>
+  </div>
+
+  <!-- Upload strip — bottom of tab -->
+  <div class="voc-upload-strip" style="margin-top:48px">
     <div class="voc-upload-left">
       <div class="voc-upload-title">Add a one-off VoC summary</div>
-      <div class="voc-upload-sub">Upload a .md or .pdf file — give it a title and it will appear as a card below</div>
+      <div class="voc-upload-sub">Upload a .md or .pdf file — give it a title and it will appear as a card above</div>
     </div>
     <div class="voc-upload-controls">
       <input type="text" id="vocOneoffTitle" placeholder="Title (e.g. Cancel Survey — April 2026)" class="voc-oneoff-title-input" />
@@ -1788,11 +1904,6 @@
       <input type="file" id="vocOneoffFileInput" accept=".md,.txt,.pdf,text/markdown,text/plain,application/pdf" style="display:none" />
     </div>
     <div id="vocOneoffUploadStatus" style="font-size:0.78rem;color:var(--text-muted);min-width:120px;text-align:right"></div>
-  </div>
-
-  <div id="vocOneoffSearchResults" style="display:none"></div>
-  <div id="vocOneoffContent">
-    <p style="color:var(--text-muted);padding:40px 0;text-align:center">No one-off summaries uploaded yet. Use the upload strip above to add one.</p>
   </div>
 
 </div>
@@ -1836,14 +1947,16 @@ const LS_KEY_SCORECARD  = 'gsheets_scorecard_data_v6';
 let DATA        = [];   // parsed weekly records
 let GOALS       = {};   // { Q1: { csat:93, qa:90, ch:8 }, Q2: {...} }
 let SCORECARD   = [];   // parsed agent weekly scorecard rows (from Weekly Agent Scorecard sheet)
-let VOC_DATA      = {};   // { "4/24": { raw, reasons, takeaways, sentiment } }
-let VOC_ONEOFF    = [];   // [{ id, title, uploadedAt, raw, reasons, takeaways, sentiment, quotes, recommendations }]
+let VOC_DATA        = {};   // { "4/24": { raw, reasons, takeaways, sentiment } }
+let VOC_ONEOFF      = [];   // [{ id, title, uploadedAt, raw, reasons, takeaways, sentiment, quotes, recommendations }]
+let VOC_REASON_XLSX = {};   // { "4/24": { l1: [{name,volume,pct}], l2:[...], l3:[...] } }
 let VOLUME_DATA = [];   // parsed volume records from Volume sheet
 let charts      = {};
 
-const LS_KEY_VOC        = 'gsheets_voc_data';
-const LS_KEY_VOC_ONEOFF = 'gsheets_voc_oneoff_data_v1';
-const LS_KEY_VOLUME     = 'gsheets_volume_data_v14';
+const LS_KEY_VOC             = 'gsheets_voc_data';
+const LS_KEY_VOC_ONEOFF      = 'gsheets_voc_oneoff_data_v1';
+const LS_KEY_VOLUME          = 'gsheets_volume_data_v14';
+const LS_KEY_VOC_REASON_XLSX = 'gsheets_voc_reason_xlsx_v7';
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 function pct(v) {
@@ -2259,11 +2372,13 @@ function parseVoCCell(raw) {
   out.reasons = out.reasons.slice(0, 5);
 
   // Extract key takeaways — lines starting with - **text:**
+  // Skip metadata fields (source, date range, channels, totals, etc.)
+  const METADATA_LABELS = /^(source|date range|total conversations|channels|period|week|quarter|handled|reporting period|time period|report date|data source|platform|tool|crm)$/i;
   const takeawayRegex = /[-*]\s+\*\*([^*]+)\*\*[:\s–-]*([^*\n]+)/g;
   while ((m = takeawayRegex.exec(raw)) !== null) {
-    const label = m[1].trim().replace(/\*\*/g, '');
+    const label = m[1].trim().replace(/\*\*/g, '').replace(/:$/, '');
     const detail = m[2].trim().replace(/\*\*/g, '');
-    if (label && detail && label.length < 80) {
+    if (label && detail && label.length < 80 && !METADATA_LABELS.test(label)) {
       out.takeaways.push(`${label}: ${detail}`);
     }
   }
@@ -2399,6 +2514,14 @@ function loadVoCCache() {
   } catch (_) { return {}; }
 }
 
+function loadVoCReasonXlsxCache() {
+  try {
+    const raw = localStorage.getItem(LS_KEY_VOC_REASON_XLSX);
+    if (!raw) return {};
+    return JSON.parse(raw);
+  } catch (_) { return {}; }
+}
+
 // ── Pre-seeded VoC data ────────────────────────────────────────────────────────
 // Week of 4/24 VoC summary sourced from the VOC Summary sheet
 const VOC_SEED = {
@@ -2417,6 +2540,7 @@ const VOC_SEED = {
       "Financial stress makes cancellations urgent: customers often try to stop orders after they've already started processing",
       "Cancellation volume is declining week-over-week but refund escalations are worsening (83.5% → 90.8%)",
     ],
+    summary: "Cancel subscription remained the #1 contact reason at 20.9% of volume, driven primarily by product fit issues — cats refusing to eat the food. Shipping pain (late/lost packages, warm boxes) was the second biggest driver at 12.9%. Financial urgency around cancellations and refund escalations are worsening despite overall cancellation volume declining week-over-week.",
     raw: "",
   }
 };
@@ -3846,7 +3970,7 @@ function renderVocOneoffTab() {
     }
 
     // ── High-level summary block ───────────────────────────────────────────────
-    const ooSummaryText = entry.summary || '';
+    const ooSummaryText = entry.summary || extractVoCsummary(entry.raw || '');
     const ooSummaryHtml = ooSummaryText
       ? `<div class="voc-summary-block">${escapeHtml(ooSummaryText)}</div>`
       : '';
@@ -4443,7 +4567,9 @@ function parseVoCMarkdown(text) {
 
   // Extract total convos
   let totalConvos = null;
-  const totalMatch = text.match(/(\d[\d,]+)\s*tagged/i) || text.match(/total[^:\n]*[:\s]+(\d[\d,]+)/i);
+  const totalMatch = text.match(/(\d[\d,]+)\s*tagged/i) ||
+    text.match(/total conversations\s*::?\s*([\d,]+)/i) ||
+    text.match(/total[^:\n]*[:\s]+([\d,]+)/i);
   if (totalMatch) totalConvos = totalMatch[1].replace(/,/g, '');
 
   // Extract high-level summary: prefer a section headed "summary/overview/tldr/executive",
@@ -4469,6 +4595,36 @@ function parseVoCMarkdown(text) {
   }
 
   return { reasons, sentiment, quotes: quotes.slice(0, 5), takeaways, recommendations, totalConvos, summary };
+}
+
+// Extract a high-level summary from raw markdown at render time.
+// Used as a fallback for entries stored before the summary field was added.
+function extractVoCsummary(text) {
+  if (!text) return '';
+  text = cleanVoCRaw(text);
+  // Prefer a section headed summary/overview/tldr/executive
+  const sectionRe = /^#+\s+(.+)$/gm;
+  const sections = [];
+  let sm;
+  while ((sm = sectionRe.exec(text)) !== null) {
+    sections.push({ title: sm[1].trim(), pos: sm.index, bodyStart: sm.index + sm[0].length });
+  }
+  for (let i = 0; i < sections.length; i++) {
+    if (/summary|overview|tldr|tl.dr|executive|highlights?/i.test(sections[i].title)) {
+      const end = i + 1 < sections.length ? sections[i + 1].pos : text.length;
+      const body = text.slice(sections[i].bodyStart, end)
+        .replace(/\|[^\n]+\|/g, '').replace(/^#{1,6}\s.+$/gm, '').replace(/\*\*/g, '').trim();
+      if (body.length >= 40) return body;
+    }
+  }
+  // Fall back to first substantive prose paragraph (≥60 chars, not a bullet/table)
+  for (const p of text.split(/\n{2,}/)) {
+    const clean = p.replace(/^#+\s.+$/gm, '').replace(/^\|.+$/gm, '').replace(/\*\*/g, '').trim();
+    if (clean.length >= 60 && !/^[-*•]/.test(clean) && !/^\d+\./.test(clean) && !/^\|/.test(clean)) {
+      return clean;
+    }
+  }
+  return '';
 }
 
 // ── Department classification ──────────────────────────────────────────────────
@@ -4664,11 +4820,35 @@ function weekSortAsc(a, b) {
   return am !== bm ? am - bm : ad - bd;
 }
 
-// Returns { ops: { weekBlocks: [{week, reasons, takeaways, recs}] }, prod: ..., mktg: ..., rd: ... }
+// Maps taxonomy L1 name → dept key
+const L1_TO_DEPT = {
+  'Operations + Fulfillment': 'ops',
+  'R+D Quality Concern Report': 'rd',
+  'Account': 'prod',
+  'Website': 'prod',
+  'Marketing/Brand': 'mktg',
+  'Smalls FAQs': 'prod',
+  'CS Admin': null,
+};
+
+// Returns {
+//   ops: { weekBlocks, xlsxL2Totals, allTakeaways, allRecs, allSummaries },
+//   prod: ..., mktg: ..., rd: ...
+// }
 function buildDeptRollup(allVoC, weeks) {
   const deptKeys = ['ops', 'prod', 'mktg', 'rd'];
   const result = {};
-  deptKeys.forEach(k => { result[k] = { weekBlocks: [] }; });
+  deptKeys.forEach(k => {
+    result[k] = {
+      weekBlocks: [],       // per-week markdown reasons
+      xlsxL2Totals: {},     // L2 name → { volume, pct (latest), l1 }
+      xlsxL3Totals: {},     // L3 name → { volume, l2 }
+      allTakeaways: [],     // all takeaways across weeks
+      allRecs: [],          // all recommendations across weeks
+      allSummaries: [],     // { week, text } from .summary or .raw
+      weeksWithData: new Set(),
+    };
+  });
 
   const sortedWeeks = [...weeks].sort(weekSortAsc);
 
@@ -4676,37 +4856,72 @@ function buildDeptRollup(allVoC, weeks) {
     const entry = allVoC[week];
     if (!entry) continue;
 
-    // Collect top-3 reasons per dept for this week (skip header rows, deduplicate by name/overlap)
+    // ── 1. Excel L1/L2/L3 data ─────────────────────────────────────────────
+    const xl = (typeof VOC_REASON_XLSX !== 'undefined') ? VOC_REASON_XLSX[week] : null;
+    if (xl && xl.l1) {
+      xl.l1.forEach(r1 => {
+        const deptKey = L1_TO_DEPT[r1.name];
+        if (!deptKey) return;
+        result[deptKey].weeksWithData.add(week);
+
+        // Accumulate L2 totals
+        const l2ForThis = (xl.l2 || []).filter(r2 => r2.parent === r1.name);
+        l2ForThis.forEach(r2 => {
+          if (!result[deptKey].xlsxL2Totals[r2.name]) {
+            result[deptKey].xlsxL2Totals[r2.name] = { volume: 0, pct: r2.pct, l1: r1.name, weeks: [] };
+          }
+          result[deptKey].xlsxL2Totals[r2.name].volume += r2.volume || 0;
+          result[deptKey].xlsxL2Totals[r2.name].weeks.push(week);
+        });
+
+        // Accumulate L3 totals
+        const l3ForThis = (xl.l3 || []).filter(r3 => r3.l1 === r1.name);
+        l3ForThis.forEach(r3 => {
+          if (!result[deptKey].xlsxL3Totals[r3.name]) {
+            result[deptKey].xlsxL3Totals[r3.name] = { volume: 0, l2: r3.l2 };
+          }
+          result[deptKey].xlsxL3Totals[r3.name].volume += r3.volume || 0;
+        });
+      });
+    }
+
+    // ── 2. Markdown reasons (fallback when no Excel) ────────────────────────
     const isHeaderRow = r => r.isHeader || (!r.volume && !/[0-9]/.test(r.pct || ''));
     const reasonsByDept = {};
     (entry.reasons || []).forEach(r => {
-      if (isHeaderRow(r)) return; // skip section-header rows (both flagged and render-detected)
+      if (isHeaderRow(r)) return;
       const dept = classifyToDept(r.name);
       if (!dept) return;
       if (!reasonsByDept[dept]) reasonsByDept[dept] = [];
       const nameLower = r.name.toLowerCase().trim();
-      // Deduplicate: skip if existing reason has same name OR one name contains the other
-      // e.g. "Shipping" and "Shipping Issue" — keep the first (higher-volume) one encountered
       const isDupe = reasonsByDept[dept].some(existing => {
         const exLower = existing.name.toLowerCase().trim();
-        return exLower === nameLower ||
-          exLower.includes(nameLower) ||
-          nameLower.includes(exLower);
+        return exLower === nameLower || exLower.includes(nameLower) || nameLower.includes(exLower);
       });
-      if (isDupe) return;
-      if (reasonsByDept[dept].length < 3) reasonsByDept[dept].push(r);
+      if (!isDupe && reasonsByDept[dept].length < 3) reasonsByDept[dept].push(r);
     });
 
-    // Takeaways and recommendations are free-form prose — not classifiable by taxonomy.
-    // Show all of them in every dept card that has matching reasons for this week.
+    // ── 3. Free-text: takeaways, recs, summary ─────────────────────────────
     const allTakeaways = entry.takeaways || [];
     const allRecs      = entry.recommendations || [];
+    const summaryText  = entry.summary || '';
 
-    // Only add a week block if this dept has at least one classified reason for this week
+    // Distribute takeaways/recs/summary to depts that have data this week
+    const activeDepts = new Set(Object.keys(reasonsByDept));
+    if (xl && xl.l1) {
+      xl.l1.forEach(r1 => { const k = L1_TO_DEPT[r1.name]; if (k) activeDepts.add(k); });
+    }
+
     deptKeys.forEach(dept => {
       const reasons = reasonsByDept[dept] || [];
       if (reasons.length) {
         result[dept].weekBlocks.push({ week, reasons, takeaways: allTakeaways, recs: allRecs });
+        result[dept].weeksWithData.add(week);
+      }
+      if (activeDepts.has(dept)) {
+        allTakeaways.forEach(t => result[dept].allTakeaways.push({ week, text: t }));
+        allRecs.forEach(r => result[dept].allRecs.push({ week, text: r }));
+        if (summaryText) result[dept].allSummaries.push({ week, text: summaryText });
       }
     });
   }
@@ -4726,106 +4941,1018 @@ const DEPT_CONFIG = [
 // Global store for reason summaries, keyed by generated ID
 const REASON_SUMMARIES = {};
 
+// ── Sub-topic line charts — mapped to the official contact reason taxonomy ────────
+// Each topic lists the exact L3 names (and L2/L1 fallbacks) from the taxonomy spreadsheet.
+// Matching is normalized exact: lowercase + trim. Partial/keyword matching is used only
+// as a last resort so data from both old and new taxonomy formats is captured.
+const SUB_TOPIC_GROUPS = [
+  {
+    id: 'shipping',
+    label: 'Operations + Fulfillment — Shipping',
+    topics: [
+      { key: 'wismo',           label: 'WISMO',
+        exact: ['wismo', 'where is my order'],
+        fallbackKw: ['wismo', 'where is my order'] },
+      { key: 'thaws_warm',      label: 'Thaws / Warm Orders',
+        exact: ['thaws/warm orders', 'thaws / warm orders', 'warm orders', 'fully thawed', 'partially thawed'],
+        fallbackKw: ['thaw', 'warm order', 'warm box'] },
+      { key: 'missing_items',   label: 'Missing / Not Delivered',
+        exact: ['missing: marked delivered', 'missing, marked delivered', 'missing items', 'carrier issue - missing but delivered'],
+        fallbackKw: ['missing: marked', 'missing, marked', 'missing item'] },
+      { key: 'incorrect_items', label: 'Incorrect Items',
+        exact: ['incorrect items', 'mispick - incorrect', 'mispick, incorrect', 'wrong items'],
+        fallbackKw: ['incorrect item', 'wrong item', 'mispick'] },
+      { key: 'damages',         label: 'Damages',
+        exact: ['damages', 'damaged box', 'damaged food packaging', 'damaged non-food item',
+                'damage - shipping box', 'damage - food packaging', 'damaged packaging'],
+        fallbackKw: ['damage', 'damaged'] },
+      { key: 'delays',          label: 'Delayed',
+        exact: ['delayed', 'delays', 'carrier issue - delayed', 'late - fresh', 'late - spoiled'],
+        fallbackKw: ['delay', 'late -', 'late delivery'] },
+      { key: 'lost_packages',   label: 'Lost Packages',
+        exact: ['lost packages', 'no movement', 'pending, no scan', 'carrier issue - pending',
+                'undeliverable', 'carrier issue - undeliverable'],
+        fallbackKw: ['lost package', 'lost shipment', 'no movement', 'undeliverable'] },
+    ],
+  },
+  {
+    id: 'subscription',
+    label: 'Account — Subscription Management',
+    topics: [
+      { key: 'account_cancel',    label: 'Account Cancellation',
+        exact: ['account cancellation', 'cancellation', 'cancel subscription'],
+        fallbackKw: ['cancel subscription', 'account cancellation'] },
+      { key: 'cancel_before',     label: 'Cancellation: Before Fulfilled',
+        exact: ['cancellation: before fulfilled', 'cancellation, before fulfilled',
+                'cancellation, before processing', 'cancellation: before processing'],
+        fallbackKw: ['cancellation: before', 'cancellation, before'] },
+      { key: 'cancel_after',      label: 'Cancellation: After Fulfilled',
+        exact: ['cancellation: after fulfilled', 'cancellation, after fulfilled',
+                'cancellation, after processing', 'cancellation: after processing'],
+        fallbackKw: ['cancellation: after', 'cancellation, after'] },
+      { key: 'edit_items',        label: 'Edit Items',
+        exact: ['edit items', 'edit subscription items', 'add/remove/edit subscription items', 'subscription items'],
+        fallbackKw: ['edit items', 'edit subscription'] },
+      { key: 'edit_customer_info', label: 'Edit Customer Information',
+        exact: ['edit customer information', 'customer information', 'incorrect address'],
+        fallbackKw: ['edit customer', 'customer information', 'incorrect address'] },
+      { key: 'subscription_q',    label: 'Subscription Questions',
+        exact: ['subscription questions', 'subscription q'],
+        fallbackKw: ['subscription question'] },
+      { key: 'update_order',      label: 'Update After Processing',
+        exact: ['update after processing'], fallbackKw: ['update after processing'] },
+      { key: 'rush_order',        label: 'Rush Next Order',
+        exact: ['rush next order'], fallbackKw: ['rush next order'] },
+    ],
+  },
+];
+
+function buildSubTopicData(group, allVoC, weeks) {
+  const sortedWeeks = [...weeks].sort((a, b) => {
+    const [am, ad] = a.split('/').map(Number);
+    const [bm, bd] = b.split('/').map(Number);
+    return am !== bm ? am - bm : ad - bd;
+  });
+  const result = {};
+  group.topics.forEach(t => { result[t.key] = []; });
+
+  sortedWeeks.forEach(week => {
+    const entry = allVoC[week];
+    const reasons = (entry && entry.reasons) ? entry.reasons : [];
+    const totalConvos = entry && entry.totalConvos ? parseInt(entry.totalConvos) : 0;
+    const xlsxEntry = VOC_REASON_XLSX[week];
+
+    group.topics.forEach(topic => {
+      let vol = 0, pctVal = null;
+
+      // Normalize a name for exact matching
+      const norm = s => (s || '').toLowerCase().trim().replace(/\s+/g, ' ');
+
+      // Match functions: exact (from taxonomy) first, keyword fallback second
+      const exactSet = new Set((topic.exact || []).map(norm));
+      const matchesExact = name => exactSet.has(norm(name));
+      const matchesKw    = name => (topic.fallbackKw || []).some(kw => norm(name).includes(kw.toLowerCase()));
+      const matches      = name => matchesExact(name) || matchesKw(name);
+
+      // Compute total volume from Excel for pct fallback
+      const xlsxTotal = xlsxEntry
+        ? (xlsxEntry.l1 || []).reduce((s, r) => s + (r.volume || 0), 0) ||
+          (xlsxEntry.l3 || []).reduce((s, r) => s + (r.volume || 0), 0)
+        : 0;
+      const denominator = totalConvos || xlsxTotal;
+
+      // l1exact set for L1-level matching
+      const l1ExactSet = new Set((topic.l1exact || []).map(norm));
+      const matchesL1 = name => l1ExactSet.has(norm(name));
+
+      // 1. Try Excel L3 exact match
+      if (xlsxEntry && xlsxEntry.l3 && xlsxEntry.l3.length) {
+        xlsxEntry.l3.forEach(r => { if (matches(r.name)) vol += (r.volume || 0); });
+        if (vol > 0 && denominator > 0) pctVal = vol / denominator * 100;
+      }
+      // 2. Try Excel L2 (for grouped L2 topics)
+      if (vol === 0 && xlsxEntry && xlsxEntry.l2 && xlsxEntry.l2.length) {
+        xlsxEntry.l2.forEach(r => { if (matches(r.name) || (l1ExactSet.size && matchesL1(r.name))) vol += (r.volume || 0); });
+        if (vol > 0 && denominator > 0) pctVal = vol / denominator * 100;
+      }
+      // 3. Try Excel L1 (for top-level topics)
+      if (vol === 0 && xlsxEntry && xlsxEntry.l1 && xlsxEntry.l1.length && l1ExactSet.size) {
+        xlsxEntry.l1.forEach(r => { if (matchesL1(r.name)) vol += (r.volume || 0); });
+        if (vol > 0 && denominator > 0) pctVal = vol / denominator * 100;
+      }
+      // 4. Fall back to markdown reasons (exact then keyword)
+      if (vol === 0) {
+        const matched = reasons.filter(r => matches(r.name));
+        matched.forEach(r => { vol += (r.volume || 0); });
+        if (vol > 0 && denominator > 0) {
+          pctVal = vol / denominator * 100;
+        } else if (vol > 0) {
+          const p = parseFloat((matched[0].pct || '').replace('%', ''));
+          if (!isNaN(p)) pctVal = p;
+        } else if (matched.length) {
+          // No volume but have pct strings — sum them
+          let pctSum = 0;
+          matched.forEach(r => {
+            const p = parseFloat((r.pct || '').replace('%', ''));
+            if (!isNaN(p)) pctSum += p;
+          });
+          if (pctSum > 0) {
+            pctVal = pctSum;
+            if (totalConvos > 0) vol = Math.round(pctSum / 100 * totalConvos);
+          }
+        }
+      }
+      result[topic.key].push({ week, volume: vol > 0 ? vol : null, pct: pctVal });
+    });
+  });
+  return { weeks: sortedWeeks, byTopic: result };
+}
+
+function renderSubTopicChart(group, allVoC, weeks, modeStateKey, chartId) {
+  const { weeks: sortedWeeks, byTopic } = buildSubTopicData(group, allVoC, weeks);
+  if (!sortedWeeks.length) return '';
+  const hasData = group.topics.some(t => byTopic[t.key].some(d => d.volume !== null || d.pct !== null));
+  if (!hasData) return '';
+  return `
+    <div class="voc-subtopic-panel">
+      <div class="voc-shipping-chart-header">${group.label}</div>
+      <div class="voc-shipping-toggle-row">
+        <span class="voc-shipping-toggle-label">View:</span>
+        <button class="voc-shipping-toggle active" onclick="setSubTopicView('${modeStateKey}','${chartId}',this,'pct')">% of Total</button>
+        <button class="voc-shipping-toggle" onclick="setSubTopicView('${modeStateKey}','${chartId}',this,'raw')">Raw Count</button>
+      </div>
+      <div class="voc-shipping-canvas-wrap">
+        <canvas id="${chartId}"></canvas>
+      </div>
+    </div>`;
+}
+
+function drawSubTopicChart(group, allVoC, weeks, modeStateKey, chartId) {
+  const { weeks: sortedWeeks, byTopic } = buildSubTopicData(group, allVoC, weeks);
+  if (!sortedWeeks.length) return;
+  destroyChart(chartId);
+  const mode = window[modeStateKey] || 'pct';
+  const palette = ['#3b82f6','#f59e0b','#10b981','#ef4444','#8b5cf6','#f97316','#06b6d4'];
+  const datasets = group.topics.map((topic, i) => ({
+    label: topic.label,
+    data: byTopic[topic.key].map(d => mode === 'pct' ? (d.pct != null ? parseFloat(d.pct.toFixed(2)) : null) : d.volume),
+    borderColor: palette[i % palette.length],
+    backgroundColor: palette[i % palette.length] + '22',
+    borderWidth: 2, pointRadius: 4, pointHoverRadius: 6, tension: 0.3, spanGaps: true,
+  }));
+  const canvas = document.getElementById(chartId);
+  if (!canvas) return;
+  charts[chartId] = new Chart(canvas, {
+    type: 'line',
+    data: { labels: sortedWeeks.map(w => 'Wk ' + w), datasets },
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 10, boxWidth: 10 } },
+        tooltip: { callbacks: { label: ctx => {
+          const v = ctx.parsed.y;
+          if (v == null) return ctx.dataset.label + ': —';
+          return ctx.dataset.label + ': ' + (mode === 'pct' ? v.toFixed(2) + '%' : v.toLocaleString());
+        }}}
+      },
+      scales: {
+        y: { beginAtZero: true, ticks: { font: { size: 10 }, callback: v => mode === 'pct' ? v + '%' : v } },
+        x: { ticks: { font: { size: 10 } } }
+      }
+    }
+  });
+}
+
+function setSubTopicView(modeStateKey, chartId, btn, mode) {
+  window[modeStateKey] = mode;
+  const row = btn.closest('.voc-shipping-toggle-row');
+  if (row) row.querySelectorAll('.voc-shipping-toggle').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const allVoC = Object.assign({}, VOC_SEED, VOC_DATA);
+  const weeks = Object.keys(allVoC);
+  const group = SUB_TOPIC_GROUPS.find(g => g.id === chartId.replace('SubTopicChart', ''));
+  if (group) drawSubTopicChart(group, allVoC, weeks, modeStateKey, chartId);
+}
+
+// Legacy wrappers so existing renderVocTab calls still work
+function renderShippingChart(allVoC, weeks) {
+  const g1 = SUB_TOPIC_GROUPS[0];
+  const g2 = SUB_TOPIC_GROUPS[1];
+  const h1 = renderSubTopicChart(g1, allVoC, weeks, '_shipMode', 'shippingSubTopicChart');
+  const h2 = renderSubTopicChart(g2, allVoC, weeks, '_subMgmtMode', 'subscriptionSubTopicChart');
+  if (!h1 && !h2) return '';
+  return `<div class="voc-subtopic-row">${h1}${h2}</div>`;
+}
+
+function drawShippingChart(allVoC, weeks) {
+  drawSubTopicChart(SUB_TOPIC_GROUPS[0], allVoC, weeks, '_shipMode', 'shippingSubTopicChart');
+  drawSubTopicChart(SUB_TOPIC_GROUPS[1], allVoC, weeks, '_subMgmtMode', 'subscriptionSubTopicChart');
+}
+
+// ── Contact Reason Taxonomy (L3 → L2 → L1) ────────────────────────────────────
+// Maps every L3 contact reason name to its L2 and L1 parents.
+const REASON_TAXONOMY = (() => {
+  // Each entry: [L1, L2, L3 (canonical name), ...aliases]
+  // Aliases cover old names, punctuation variants, typos seen in Excel exports
+  const t = [
+    // ── R+D Quality Concern Report ──────────────────────────────────────────
+    ['R+D Quality Concern Report','Food Quality','Smell Issue',
+      'smell','smell issue'],
+    ['R+D Quality Concern Report','Food Quality','Color Issue',
+      'color','colour issue'],
+    ['R+D Quality Concern Report','Food Quality','Texture Issue',
+      'texture'],
+    ['R+D Quality Concern Report','Food Quality','Shelf-Life Issue',
+      'shelf-life issues','shelf-life issue (going bad early)','shelf life issue'],
+    ['R+D Quality Concern Report','Food Quality','Underweight/Overweight Pkgs',
+      'underweight/overweight packages'],
+    ['R+D Quality Concern Report','Food Quality','Cat Won\'t Eat'],
+    ['R+D Quality Concern Report','Food Quality','Mislabeled'],
+    ['R+D Quality Concern Report','Foreign Object','Organic Material',
+      'in food - fresh','in food - dry','in treats','in box'],
+    ['R+D Quality Concern Report','Foreign Object','Inorganic Material'],
+    ['R+D Quality Concern Report','Reaction/Illness','Vomiting Only',
+      'vomiting only'],
+    ['R+D Quality Concern Report','Reaction/Illness','Vomiting with other symptoms',
+      'vomiting with other symptoms'],
+    ['R+D Quality Concern Report','Reaction/Illness','Diarrhea Only',
+      'diarrhea only'],
+    ['R+D Quality Concern Report','Reaction/Illness','Constipation only',
+      'constipation'],
+    ['R+D Quality Concern Report','Reaction/Illness','Urinary Tract Issues',
+      'urinary tract issues'],
+    ['R+D Quality Concern Report','Reaction/Illness','Other Reactions or Illness',
+      'other reactions or illness','esalation - vet consulted',
+      'escalation - vet consulted','escalation - no vet consulted',
+      'deemed non issue','deemed non-issue'],
+    ['R+D Quality Concern Report','Reaction/Illness','Allergies',
+      'allergies (skin itching, gi issues, etc.)','allergy'],
+    ['R+D Quality Concern Report','Food Packaging Quality','Sealing issues / leakage',
+      'sealing issues/leakage','sealing issues/leakage'],
+    ['R+D Quality Concern Report','Food Packaging Quality','Mislabeled Product'],
+    ['R+D Quality Concern Report','Food Packaging Quality','Hard to open'],
+    ['R+D Quality Concern Report','Food Packaging Quality','Damage or scratches'],
+    // ── Operations + Fulfillment ─────────────────────────────────────────────
+    ['Operations + Fulfillment','Shipment Issue','Fully Thawed'],
+    ['Operations + Fulfillment','Shipment Issue','Partially Thawed'],
+    ['Operations + Fulfillment','Shipment Issue','Mispick, Short',
+      'mispick - short','mispick short','mispick: short'],
+    ['Operations + Fulfillment','Shipment Issue','Mispick, Incorrect',
+      'mispick - incorrect','mispick incorrect','mispick: incorrect'],
+    ['Operations + Fulfillment','Shipment Issue','Duplicate Order'],
+    ['Operations + Fulfillment','Shipment Issue','Pending, No Scan',
+      'pending no scan','carrier issue - pending','pending: no scan'],
+    ['Operations + Fulfillment','Carrier Issue','Missing, Marked Delivered',
+      'carrier issue - missing but delivered','missing marked delivered',
+      'missing: marked delivered'],
+    ['Operations + Fulfillment','Carrier Issue','Delayed',
+      'carrier issue - delayed'],
+    ['Operations + Fulfillment','Carrier Issue','No Movement'],
+    ['Operations + Fulfillment','Carrier Issue','Undeliverable',
+      'carrier issue - undeliverable'],
+    ['Operations + Fulfillment','Carrier Issue','Driver Complaint',
+      'carrier issue - driver complaint'],
+    ['Operations + Fulfillment','Carrier Issue','Inconvenient Delivery Location'],
+    ['Operations + Fulfillment','Packaging Issue','Damaged Box',
+      'damage - shipping box'],
+    ['Operations + Fulfillment','Packaging Issue','Damaged Food Packaging',
+      'damage - food packaging'],
+    ['Operations + Fulfillment','Packaging Issue','Damaged Non-food Item',
+      'damage - non-food item','damage - non-food'],
+    ['Operations + Fulfillment','Packaging Issue','Packaging Complaint'],
+    ['Operations + Fulfillment','Packaging Issue','Dry Ice Burn Injury',
+      'burn/numbness','dry ice burn','dry ice/coolant - burn/numbness'],
+    ['Operations + Fulfillment','Packaging Issue','Loose Dry Ice',
+      'no bag','dry ice/coolant - no bag','loose dry ice'],
+    ['Operations + Fulfillment','Packaging Issue','No Coolant',
+      'bag, no ice','dry ice/coolant - bag, no ice','no coolant'],
+    ['Operations + Fulfillment','Order Inquiry','Update after processing'],
+    ['Operations + Fulfillment','Order Inquiry','Delay next order'],
+    ['Operations + Fulfillment','Order Inquiry','Rush next order'],
+    ['Operations + Fulfillment','Order Inquiry','OOS / Out of stock',
+      'out of stock','oos','inquiry - inventory'],
+    ['Operations + Fulfillment','Order Inquiry','Cancellation, Before Fulfilled',
+      'cancellation, before processing','cancellation before processing',
+      'cancellation before fulfilled','cancellation: before fulfilled',
+      'cancellation: before processing'],
+    ['Operations + Fulfillment','Order Inquiry','Cancellation, After Fulfilled',
+      'cancellation, after processing','cancellation after processing',
+      'cancellation after fulfilled','cancellation: after fulfilled',
+      'cancellation: after processing','cancellation'],
+    ['Operations + Fulfillment','Order Inquiry','WISMO',
+      'tracking','wismo'],
+    ['Operations + Fulfillment','Order Inquiry','Money back guarantee',
+      'refund request - money back guarantee','money back guarantee'],
+    ['Operations + Fulfillment','Order Inquiry','Incorrect Address'],
+    ['Operations + Fulfillment','Order Inquiry','Failed Charge'],
+    // ── Account ──────────────────────────────────────────────────────────────
+    ['Account','Account Management','Reactivation'],
+    ['Account','Account Management','Edit Subscription Items',
+      'edit items','add/remove/edit subscription items','edit subscription items'],
+    ['Account','Account Management','Edit Customer Information',
+      'customer information'],
+    ['Account','Account Management','Account Cancellation'],
+    ['Account','Account Management','Upcoming Order Cost'],
+    ['Account','Account Management','Password/Log-in',
+      'password/login','password / log-in'],
+    ['Account','Account Management','Apply Discount Code',
+      'discount/promo code','discount code','apply discount code'],
+    ['Account','Order Management','Update after processing'],
+    ['Account','Order Management','Rush next order'],
+    ['Account','Order Management','Delay next order'],
+    ['Account','Order Management','Out of stock'],
+    ['Account','Order Management','Failed Charge'],
+    ['Account','Order Management','Incorrect Address'],
+    ['Account','Order Management','Cancellation, Before Fulfilled'],
+    ['Account','Order Management','Cancellation, After Fulfilled'],
+    ['Account','Order Management','WISMO'],
+    ['Account','Order Management','Money back guarantee'],
+    ['Account','Referral Program','Referral FAQ',
+      'referral faq','how referrals work'],
+    ['Account','Referral Program','Advocate Confusion'],
+    ['Account','Referral Program','Friend Confusion'],
+    // ── Website ──────────────────────────────────────────────────────────────
+    ['Website','Website Bug','Reactivation Bug',
+      'reativation bug'],
+    ['Website','Website Bug','Quiz/Checkout Bug'],
+    ['Website','Website Bug','Account/Order Management Bug'],
+    ['Website','Website Bug','Cancellation Bug'],
+    ['Website','Website Confusion/Feedback','Confusing UX/UI'],
+    ['Website','Website Confusion/Feedback','General Website Feedback'],
+    // ── Marketing/Brand ──────────────────────────────────────────────────────
+    ['Marketing/Brand','Comms Issues','Missing Comms Email/SMS',
+      'missing comms email/sms'],
+    ['Marketing/Brand','Comms Issues','Comms Bug',
+      'broken link in comms'],
+    ['Marketing/Brand','Marketing Feedback','Partner Concern'],
+    ['Marketing/Brand','Marketing Feedback','Partnership Request',
+      'partnership request'],
+    ['Marketing/Brand','Marketing Feedback','Brand / Promotional Campaign Feedback',
+      'brand campaign','campaign feedback'],
+    ['Marketing/Brand','Marketing Feedback','Site Copy'],
+    ['Marketing/Brand','Comms Feedback','Pop-Up Comms Feedback'],
+    ['Marketing/Brand','Comms Feedback','Delivery Comms Feedback'],
+    ['Marketing/Brand','Comms Feedback','Transactional Comms Feedback'],
+    ['Marketing/Brand','Comms Feedback','Marketing Comms Feedback',
+      'abandon cart comms feedback'],
+    // ── Smalls FAQs ──────────────────────────────────────────────────────────
+    ['Smalls FAQs','Food + Prep FAQs','Ingredients + Nutrition',
+      'ingredients + process','ingredients','nutrition',
+      'inquiry - ingredients','inquiry - nutrition'],
+    ['Smalls FAQs','Food + Prep FAQs','Support Diet',
+      'inquiry - support diet'],
+    ['Smalls FAQs','Food + Prep FAQs','Products Offered/Recommendations',
+      'products offered/ recommendations','products offers/recommendations'],
+    ['Smalls FAQs','Food + Prep FAQs','Transition Support/Serving Guidance',
+      'transition support','transition support/serving guidance',
+      'feeding + serving instructions','inquiry - transition'],
+    ['Smalls FAQs','Food + Prep FAQs','Cat Stopped Eating'],
+    ['Smalls FAQs','Food + Prep FAQs','Storage Instructions',
+      'inquiry - storage'],
+    ['Smalls FAQs','Non-food FAQs','Cat Non-food Items'],
+    ['Smalls FAQs','Non-food FAQs','Human Apparel/Items'],
+    ['Smalls FAQs','Purchasing Smalls Food FAQs','Pricing Questions/Confusion',
+      'pricing questions/confusion','inquiry - pricing',
+      'too expensive','recurring charge confusion'],
+    ['Smalls FAQs','Purchasing Smalls Food FAQs','Subscription Questions',
+      'inquiry - subscription'],
+    ['Smalls FAQs','Purchasing Smalls Food FAQs','Retail Inquiry',
+      'purchasing retail'],
+    ['Smalls FAQs','Purchasing Smalls Food FAQs','Sampler Questions',
+      'inquiry - sampler'],
+    ['Smalls FAQs','Purchasing Smalls Food FAQs','One-time Order',
+      'one-time order request','one time order','one-time order request'],
+    ['Smalls FAQs','Shipping + Delivery FAQs','Where do you deliver?'],
+    ['Smalls FAQs','Shipping + Delivery FAQs','Packaging / Insulation Inquiry',
+      'packaging/insulation inquiry','packaging / insulation inquiry'],
+    ['Smalls FAQs','Shipping + Delivery FAQs','Carrier Question'],
+    // ── CS Admin ─────────────────────────────────────────────────────────────
+    ['CS Admin','Feedback','Positive Feedback',
+      'positive feedback'],
+    ['CS Admin','No Response Needed','Missed Call'],
+    ['CS Admin','No Response Needed','Spam'],
+    ['CS Admin','No Response Needed','Multitix',
+      'multi-tix','multitix'],
+    ['CS Admin','Temporary','Does not fit'],
+    ['CS Admin','Temporary','More Info Needed',
+      'more info needed','more information needed'],
+  ];
+
+  const norm = s => (s || '').toLowerCase().trim().replace(/\s+/g, ' ');
+  const map = {};
+  t.forEach(([l1, l2, l3, ...aliases]) => {
+    const canonical = { l1, l2, l3 };
+    // Register canonical name
+    map[norm(l3)] = canonical;
+    // Register each alias, but don't override a more-specific entry already set
+    aliases.forEach(alias => {
+      const k = norm(alias);
+      if (!map[k]) map[k] = canonical;
+    });
+  });
+  return map;
+})();
+
+// Look up taxonomy for a reason name; returns { l1, l2, l3 } or null
+function lookupTaxonomy(name) {
+  const norm = s => (s || '').toLowerCase().trim().replace(/\s+/g, ' ');
+  return REASON_TAXONOMY[norm(name)] || null;
+}
+
+// ── Contact Reason Excel Upload ─────────────────────────────────────────────────
+// Parses a flat "Contact Reason | 4/24 | 5/1 | ..." spreadsheet.
+// Returns { "4/24": { l1:[], l2:[], l3:[] }, "5/1": { ... }, ... }
+function parseContactReasonXlsx(arrayBuffer) {
+  const wb = XLSX.read(arrayBuffer, { type: 'array', cellDates: false });
+  const ws = wb.Sheets[wb.SheetNames[0]];
+  if (!ws || !ws['!ref']) return {};
+
+  const range = XLSX.utils.decode_range(ws['!ref']);
+
+  // Helper: get a cell object from the sheet
+  const getCell = (r, c) => ws[XLSX.utils.encode_cell({ r, c })] || null;
+
+  // Convert a SheetJS cell to a M/D week key, or null
+  const cellToWeekKey = (cell) => {
+    if (!cell) return null;
+    // Numeric cell — check if it's a date serial (Excel dates are ~40000-50000 for 2010-2026)
+    if (cell.t === 'n' && cell.v >= 38000 && cell.v <= 60000) {
+      // Use the formatted string first — most reliable
+      if (cell.w) {
+        const w = cell.w.trim();
+        if (/\d+[-–]\d+/.test(w)) return null; // range like 5/1-5/7
+        const m = w.match(/^(\d{1,2})\/(\d{1,2})/);
+        if (m) return parseInt(m[1]) + '/' + parseInt(m[2]);
+      }
+      // Compute from serial
+      const d = new Date(Date.UTC(1899, 11, 30) + Math.round(cell.v) * 86400000);
+      return (d.getUTCMonth() + 1) + '/' + d.getUTCDate();
+    }
+    // String cell
+    if (cell.t === 's' || cell.t === 'str') {
+      const s = (cell.v || '').toString().trim();
+      if (/\d+[-–]\d+/.test(s)) return null;
+      if (/^\d{1,2}\/\d{1,2}$/.test(s)) return s;
+      const full = s.match(/^(\d{1,2})\/(\d{1,2})\/\d{4}$/);
+      if (full) return parseInt(full[1]) + '/' + parseInt(full[2]);
+    }
+    return null;
+  };
+
+  // Find the header row: look for the row that has "Contact Reason" in col 0
+  // and a date in at least one other column
+  let headerIdx = -1;
+  for (let r = range.s.r; r <= Math.min(range.s.r + 5, range.e.r); r++) {
+    const col0 = getCell(r, 0);
+    const col0Val = col0 ? String(col0.v || '').toLowerCase() : '';
+    const hasContactReason = col0Val.includes('contact') || col0Val.includes('reason');
+    // Check if any col 1+ has a date
+    let hasDate = false;
+    for (let c = 1; c <= range.e.c; c++) {
+      if (cellToWeekKey(getCell(r, c)) !== null) { hasDate = true; break; }
+    }
+    if (hasContactReason || hasDate) { headerIdx = r; break; }
+  }
+  // Fallback: first row with ≥2 non-empty cells
+  if (headerIdx === -1) {
+    for (let r = range.s.r; r <= Math.min(range.s.r + 5, range.e.r); r++) {
+      let count = 0;
+      for (let c = range.s.c; c <= range.e.c; c++) {
+        const cell = getCell(r, c);
+        if (cell && cell.v !== '' && cell.v != null) count++;
+      }
+      if (count >= 2) { headerIdx = r; break; }
+    }
+  }
+  if (headerIdx === -1) return {};
+
+  // Detect week columns from the header row
+  const weekCols = [];
+  for (let c = 1; c <= range.e.c; c++) {
+    const key = cellToWeekKey(getCell(headerIdx, c));
+    if (key) weekCols.push({ colIdx: c, weekKey: key });
+  }
+
+  // No date columns detected — use col 1 as volume, return _flat for user to assign a week
+  if (!weekCols.length) {
+    const flatRows = [];
+    for (let r = headerIdx + 1; r <= range.e.r; r++) {
+      const nameCell = getCell(r, 0);
+      const volCell  = getCell(r, 1);
+      const name = nameCell ? String(nameCell.v || '').trim() : '';
+      if (!name) continue;
+      const vol = volCell && volCell.t === 'n' ? volCell.v
+                : parseInt(String(volCell?.v || '').replace(/[,\s]/g, '')) || 0;
+      if (vol > 0) flatRows.push({ name, volume: vol });
+    }
+    const totalVol = flatRows.reduce((s, r) => s + r.volume, 0);
+    const pct = vol => totalVol ? (vol / totalVol * 100).toFixed(1) + '%' : '';
+    const l3 = flatRows.map(r => {
+      const tax = lookupTaxonomy(r.name);
+      return { name: r.name, l1: tax ? tax.l1 : 'Other', l2: tax ? tax.l2 : 'Other',
+               volume: r.volume, pct: pct(r.volume) };
+    }).sort((a, b) => b.volume - a.volume);
+    const l2map = {}, l1map = {};
+    l3.forEach(r => {
+      const k = r.l1 + '|||' + r.l2;
+      if (!l2map[k]) l2map[k] = { name: r.l2, parent: r.l1, volume: 0 };
+      l2map[k].volume += r.volume;
+      if (!l1map[r.l1]) l1map[r.l1] = { name: r.l1, volume: 0 };
+      l1map[r.l1].volume += r.volume;
+    });
+    const l2 = Object.values(l2map).sort((a, b) => b.volume - a.volume).map(r => ({ ...r, pct: pct(r.volume) }));
+    const l1 = Object.values(l1map).sort((a, b) => b.volume - a.volume).map(r => ({ ...r, pct: pct(r.volume) }));
+    return { _flat: { l1, l2, l3 } };
+  }
+
+  // Build per-week result
+  const result = {};
+  weekCols.forEach(({ weekKey }) => {
+    result[weekKey] = { l3raw: [], _total: 0 };
+  });
+
+  for (let r = headerIdx + 1; r <= range.e.r; r++) {
+    const nameCell = getCell(r, 0);
+    const name = nameCell ? String(nameCell.v || '').trim() : '';
+    if (!name) continue;
+    weekCols.forEach(({ colIdx, weekKey }) => {
+      const cell = getCell(r, colIdx);
+      const vol = cell && cell.t === 'n' ? cell.v
+                : parseInt(String(cell?.v || '').replace(/[,\s]/g, '')) || 0;
+      if (vol > 0) {
+        result[weekKey].l3raw.push({ name, volume: vol });
+        result[weekKey]._total += vol;
+      }
+    });
+  }
+
+  // Enrich with taxonomy and build L1/L2 roll-ups
+  Object.entries(result).forEach(([weekKey, entry]) => {
+    const total = entry._total;
+    const pct = vol => total ? (vol / total * 100).toFixed(1) + '%' : '';
+
+    // Enrich L3 rows with parent info
+    const l3 = entry.l3raw.map(r => {
+      const tax = lookupTaxonomy(r.name);
+      return {
+        name: r.name,
+        l1: tax ? tax.l1 : 'Other',
+        l2: tax ? tax.l2 : 'Other',
+        volume: r.volume,
+        pct: pct(r.volume),
+      };
+    }).sort((a, b) => b.volume - a.volume);
+
+    // Roll up L2
+    const l2map = {};
+    l3.forEach(r => {
+      const key = r.l1 + '|||' + r.l2;
+      if (!l2map[key]) l2map[key] = { name: r.l2, parent: r.l1, volume: 0 };
+      l2map[key].volume += r.volume;
+    });
+    const l2 = Object.values(l2map).sort((a, b) => b.volume - a.volume).map(r => ({
+      ...r, pct: pct(r.volume)
+    }));
+
+    // Roll up L1
+    const l1map = {};
+    l3.forEach(r => {
+      if (!l1map[r.l1]) l1map[r.l1] = { name: r.l1, volume: 0 };
+      l1map[r.l1].volume += r.volume;
+    });
+    const l1 = Object.values(l1map).sort((a, b) => b.volume - a.volume).map(r => ({
+      ...r, pct: pct(r.volume)
+    }));
+
+    result[weekKey] = { l1, l2, l3 };
+  });
+
+  return result;
+}
+
+function handleVoCReasonXlsxFile(file) {
+  const statusEl = document.getElementById('vocReasonXlsxStatus');
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const parsed = parseContactReasonXlsx(e.target.result);
+
+      // parsed is { "4/24": {...}, "5/1": {...}, ... }  OR  { _flat: {...} } for single-col files
+      const selectedWeek = document.getElementById('vocReasonXlsxWeekSelect')?.value || '';
+
+      if (parsed._flat) {
+        // No date headers found — require a week selection
+        if (!selectedWeek) { statusEl.textContent = 'Please select a week from the dropdown first.'; return; }
+        VOC_REASON_XLSX[selectedWeek] = parsed._flat;
+        statusEl.textContent = `Loaded for week of ${selectedWeek}`;
+      } else if (selectedWeek) {
+        // User chose a specific week — merge all parsed data under that week
+        const merged = { l1: [], l2: [], l3: [] };
+        Object.values(parsed).forEach(d => {
+          (d.l1 || []).forEach(r => merged.l1.push(r));
+          (d.l2 || []).forEach(r => merged.l2.push(r));
+          (d.l3 || []).forEach(r => merged.l3.push(r));
+        });
+        VOC_REASON_XLSX[selectedWeek] = merged;
+        statusEl.textContent = `Loaded for week of ${selectedWeek}`;
+      } else {
+        // Auto-detect weeks from column headers
+        const weeks = Object.keys(parsed);
+        if (!weeks.length) { statusEl.textContent = 'No data found in file.'; return; }
+        weeks.forEach(w => { VOC_REASON_XLSX[w] = parsed[w]; });
+        const sortedWks = weeks.sort((a, b) => {
+          const [am, ad] = a.split('/').map(Number);
+          const [bm, bd] = b.split('/').map(Number);
+          return am !== bm ? am - bm : ad - bd;
+        });
+        statusEl.textContent = `Loaded ${weeks.length} week${weeks.length !== 1 ? 's' : ''}: ${sortedWks.join(', ')}`;
+      }
+
+      localStorage.setItem(LS_KEY_VOC_REASON_XLSX, JSON.stringify(VOC_REASON_XLSX));
+      renderVocTab();
+    } catch (err) {
+      statusEl.textContent = 'Error parsing file.';
+      console.error(err);
+    }
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+function renderContactReasonAccordion(allVoC, weeks) {
+  // Find the most recent week that has Excel data among the filtered weeks
+  const sortedWeeks = [...weeks].sort((a, b) => {
+    const [am, ad] = a.split('/').map(Number);
+    const [bm, bd] = b.split('/').map(Number);
+    return bm !== am ? bm - am : bd - ad;
+  });
+  const weeksWithData = sortedWeeks.filter(w => VOC_REASON_XLSX[w]);
+  if (!weeksWithData.length) return '';
+
+  const weekWithData = weeksWithData[0];
+  return buildReasonAccordionHtml(weekWithData, weeksWithData);
+}
+
+function buildReasonAccordionHtml(week, allWeeksWithData) {
+  const entry = VOC_REASON_XLSX[week];
+  if (!entry) return '';
+
+  const l1 = entry.l1 || [];
+  const l2 = entry.l2 || [];
+  const l3 = entry.l3 || [];
+  if (!l1.length && !l2.length && !l3.length) return '';
+
+  // Build hierarchy: L1 → L2 children → L3 grandchildren
+  // For each L1, find L2 rows whose parent matches, and for each L2 find L3 rows
+  function buildRows() {
+    // If we have L1 data, build nested accordion
+    if (l1.length) {
+      return l1.map((r1, i1) => {
+        const l2Children = l2.filter(r2 => r2.parent === r1.name);
+        const l2Rows = l2Children.map((r2, i2) => {
+          const l3Children = l3.filter(r3 => r3.parent2 === r2.name || (r3.parent1 === r1.name && r3.parent2 === r2.name));
+          const l3Rows = l3Children.map((r3, i3) => {
+            const id3 = `rxl3-${i1}-${i2}-${i3}`;
+            return `<tr class="rxl3-row" id="${id3}" style="display:none">
+              <td style="padding-left:52px;font-size:0.82rem;color:var(--text-muted)">↳ ${escapeHtml(r3.name)}</td>
+              <td style="font-size:0.82rem;text-align:right;color:var(--text-muted)">${r3.volume ? r3.volume.toLocaleString() : '—'}</td>
+              <td style="font-size:0.82rem;text-align:right;color:var(--text-muted)">${r3.pct || '—'}</td>
+            </tr>`;
+          }).join('');
+          const id2 = `rxl2-${i1}-${i2}`;
+          const hasL3 = l3Children.length > 0;
+          return `<tr class="rxl2-row" id="${id2}" style="display:none">
+            <td style="padding-left:28px;font-size:0.85rem" ${hasL3 ? `onclick="toggleRxLevel('rxl3-${i1}-${i2}', this)" style="padding-left:28px;font-size:0.85rem;cursor:pointer"` : ''}>
+              ${hasL3 ? '<span class="rx-chevron">▶</span> ' : '<span style="display:inline-block;width:14px"></span> '}${escapeHtml(r2.name)}
+            </td>
+            <td style="font-size:0.85rem;text-align:right">${r2.volume ? r2.volume.toLocaleString() : '—'}</td>
+            <td style="font-size:0.85rem;text-align:right">${r2.pct || '—'}</td>
+          </tr>
+          ${l3Rows}`;
+        }).join('');
+        const id1 = `rxl1-${i1}`;
+        const hasL2 = l2Children.length > 0;
+        return `<tr class="rxl1-row" ${hasL2 ? `onclick="toggleRxLevel('rxl2-${i1}', this)"` : ''} style="cursor:${hasL2?'pointer':'default'};font-weight:600">
+          <td style="padding-left:8px">
+            ${hasL2 ? '<span class="rx-chevron">▶</span> ' : ''}${escapeHtml(r1.name)}
+          </td>
+          <td style="text-align:right">${r1.volume ? r1.volume.toLocaleString() : '—'}</td>
+          <td style="text-align:right">${r1.pct || '—'}</td>
+        </tr>
+        ${l2Rows}`;
+      }).join('');
+    }
+    // L2 only with L3 children
+    if (l2.length) {
+      return l2.map((r2, i2) => {
+        const l3Children = l3.filter(r3 => r3.parent2 === r2.name);
+        const l3Rows = l3Children.map((r3, i3) => {
+          return `<tr class="rxl3-row" id="rxl3-${i2}-${i3}" style="display:none">
+            <td style="padding-left:32px;font-size:0.82rem;color:var(--text-muted)">↳ ${escapeHtml(r3.name)}</td>
+            <td style="font-size:0.82rem;text-align:right;color:var(--text-muted)">${r3.volume ? r3.volume.toLocaleString() : '—'}</td>
+            <td style="font-size:0.82rem;text-align:right;color:var(--text-muted)">${r3.pct || '—'}</td>
+          </tr>`;
+        }).join('');
+        const hasL3 = l3Children.length > 0;
+        return `<tr class="rxl2-row" ${hasL3 ? `onclick="toggleRxLevel('rxl3-${i2}', this)"` : ''} style="cursor:${hasL3?'pointer':'default'};font-weight:600">
+          <td style="padding-left:8px">
+            ${hasL3 ? '<span class="rx-chevron">▶</span> ' : ''}${escapeHtml(r2.name)}
+          </td>
+          <td style="text-align:right">${r2.volume ? r2.volume.toLocaleString() : '—'}</td>
+          <td style="text-align:right">${r2.pct || '—'}</td>
+        </tr>
+        ${l3Rows}`;
+      }).join('');
+    }
+    // L3 only — flat list
+    return l3.map(r3 => `<tr>
+      <td style="padding-left:8px;font-size:0.85rem">${escapeHtml(r3.name)}</td>
+      <td style="font-size:0.85rem;text-align:right">${r3.volume ? r3.volume.toLocaleString() : '—'}</td>
+      <td style="font-size:0.85rem;text-align:right">${r3.pct || '—'}</td>
+    </tr>`).join('');
+  }
+
+  const weekOptionsHtml = allWeeksWithData.map(w =>
+    `<option value="${w}" ${w === week ? 'selected' : ''}>Week of ${w}</option>`
+  ).join('');
+
+  return `
+    <div class="voc-reason-chart-section" id="vocReasonChartSection">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+        <div class="voc-reason-chart-section-header" style="margin-bottom:0">Contact Reason Breakdown — Week of ${week}</div>
+        ${allWeeksWithData.length > 1 ? `<select class="voc-week-select" onchange="switchReasonAccordionWeek(this.value)">${weekOptionsHtml}</select>` : ''}
+      </div>
+      <div class="voc-reason-canvas-wrap" style="padding:0;min-height:auto">
+        <table class="voc-detail-reasons" style="width:100%">
+          <thead>
+            <tr>
+              <th style="padding:10px 12px">Contact Reason</th>
+              <th style="padding:10px 12px;text-align:right">Volume</th>
+              <th style="padding:10px 12px;text-align:right">% of Total</th>
+            </tr>
+          </thead>
+          <tbody id="rxAccordionBody">
+            ${buildRows()}
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.72rem;color:var(--text-muted);margin-top:8px">Click a row to expand sub-categories</p>
+    </div>`;
+}
+
+function toggleRxLevel(prefix, rowEl) {
+  // Toggle all rows whose id starts with prefix- (trailing dash prevents partial matches)
+  const tbody = document.getElementById('rxAccordionBody');
+  if (!tbody) return;
+  // Find all matching rows — prefix always ends with a number, so append '-' to avoid partial matches
+  const allRows = tbody.querySelectorAll(`tr[id^="${prefix}-"]`);
+  if (!allRows.length) return;
+
+  const firstRow = allRows[0];
+  const isOpen = firstRow.style.display !== 'none';
+
+  // If closing, also close all deeper levels (children of children)
+  allRows.forEach(r => {
+    r.style.display = isOpen ? 'none' : '';
+    // If closing, also collapse any open children within this section
+    if (isOpen) {
+      const chevron = r.querySelector('.rx-chevron');
+      if (chevron) chevron.textContent = '▶';
+      // Close grandchildren
+      const rid = r.id; // e.g. rxl2-0-1
+      const parts = rid.split('-'); // ['rxl2', '0', '1']
+      if (parts[0] === 'rxl2') {
+        const grandPrefix = `rxl3-${parts[1]}-${parts[2]}-`;
+        tbody.querySelectorAll(`tr[id^="${grandPrefix}"]`).forEach(gr => { gr.style.display = 'none'; });
+      }
+    }
+  });
+
+  // Toggle chevron on the clicked row
+  const chevron = rowEl.querySelector('.rx-chevron');
+  if (chevron) chevron.textContent = isOpen ? '▶' : '▼';
+}
+
+function switchReasonAccordionWeek(week) {
+  const section = document.getElementById('vocReasonChartSection');
+  if (!section) return;
+  const allVoC = Object.assign({}, VOC_SEED, VOC_DATA);
+  const allWeeksWithData = Object.keys(allVoC).filter(w => VOC_REASON_XLSX[w]).sort((a, b) => {
+    const [am, ad] = a.split('/').map(Number);
+    const [bm, bd] = b.split('/').map(Number);
+    return bm !== am ? bm - am : bd - ad;
+  });
+  section.outerHTML = buildReasonAccordionHtml(week, allWeeksWithData);
+}
+
+function drawContactReasonChart() { /* no-op: replaced by accordion */ }
+
 function renderDeptRollup(allVoC, weeks) {
   const rollup = buildDeptRollup(allVoC, weeks);
-  const hasAny = DEPT_CONFIG.some(d => rollup[d.key].weekBlocks.length > 0);
+  const hasAny = DEPT_CONFIG.some(d =>
+    rollup[d.key].weekBlocks.length > 0 ||
+    Object.keys(rollup[d.key].xlsxL2Totals).length > 0);
   if (!hasAny) return '';
 
   const cardsHtml = DEPT_CONFIG.map(dept => {
-    const { weekBlocks } = rollup[dept.key];
+    const data = rollup[dept.key];
+    const { weekBlocks, xlsxL2Totals, xlsxL3Totals, allTakeaways, allRecs, allSummaries } = data;
+    const weekCount = data.weeksWithData.size;
     const cardId = `dept-card-${dept.key}`;
-    const weekCount = weekBlocks.length;
     const countLabel = weekCount ? `${weekCount} week${weekCount !== 1 ? 's' : ''}` : 'No data';
 
-    let bodyHtml;
-    if (!weekBlocks.length) {
-      bodyHtml = `<p class="dept-empty">No feedback attributed to this department in the selected period.</p>`;
-    } else {
-      bodyHtml = weekBlocks.map(block => {
-        // ── 1. Top 3 contact reasons ─────────────────────────────────────────
-        let reasonsHtml = '';
-        if (block.reasons.length) {
-          reasonsHtml = `<div class="dept-sub-label">Top Contact Reasons</div>` +
-            block.reasons.map((r, i) => {
-              const sid = 'rs-' + r.name.toLowerCase().replace(/[^a-z0-9]/g, '-').slice(0, 40)
-                        + '-' + dept.key + '-' + block.week.replace('/', '-');
-              const entry = allVoC[block.week] || {};
-              const keyWords = r.name.toLowerCase().split(/\s+/).filter(w => w.length > 3);
-              const matchesReason = str => keyWords.some(w => str.toLowerCase().includes(w));
-              const isAnalysisSentence = s =>
-                !/[0-9a-f]{8}-[0-9a-f]{4}/i.test(s) &&
-                !/^>/.test(s.trim()) &&
-                !/^-\s*customer\s*-/i.test(s.trim()) &&
-                !/"[^"]{10,}"/.test(s) &&
-                !/^["'']/.test(s.trim()) &&
-                !/i don['']t|my cat|my order|my package|my subscription|i was|i have|i need|i want|i am|i've|i'm/i.test(s);
-              let detailContent = '';
-              if (entry.raw && entry.raw.length > 10) {
-                const sentences = entry.raw
-                  .replace(/#+[^\n]*/g, '')
-                  .replace(/\|[^\n]+\|/g, '')
-                  .replace(/^[-*•]\s+/gm, '')
-                  .replace(/^>.*$/gm, '')
-                  .split(/(?<=[.!?])\s+/)
-                  .map(s => s.replace(/\*\*/g, '').replace(/\n+/g, ' ').trim())
-                  .filter(s => s.length > 30 && s.length < 400 && isAnalysisSentence(s));
-                const matched = sentences.filter(s => matchesReason(s));
-                if (matched.length) detailContent = matched.slice(0, 5).map(s => escapeHtml(s)).join(' ');
-              }
-              if (!detailContent) {
-                const related = (entry.takeaways || []).filter(t => matchesReason(t));
-                detailContent = related.length
-                  ? related.slice(0, 3).map(s => escapeHtml(s)).join(' ')
-                  : 'No additional detail available for this reason this week.';
-              }
-              const data = [r.pct, r.volume ? r.volume.toLocaleString() + ' contacts' : ''].filter(Boolean).join(' · ');
-              return `
-                <div class="dept-reason-row" onclick="toggleReasonDetail('${sid}')">
-                  <span class="dept-reason-rank">#${i + 1}</span>
-                  <span class="dept-reason-name">${escapeHtml(r.name)}</span>
-                  ${data ? `<span class="dept-reason-data">${escapeHtml(data)}</span>` : ''}
-                  <span class="dept-reason-arrow">▾</span>
-                </div>
-                <div class="dept-reason-detail" id="${sid}">
-                  ${detailContent}
-                </div>`;
-            }).join('');
-        }
+    const hasExcel = Object.keys(xlsxL2Totals).length > 0;
+    const hasMarkdown = weekBlocks.length > 0;
 
-        // ── 2. Takeaways ────────────────────────────────────────────────────
-        let takeawaysHtml = '';
-        const cappedTakeaways = block.takeaways.slice(0, 5);
-        if (cappedTakeaways.length) {
-          takeawaysHtml = `<div class="dept-sub-label">Takeaways</div>
-            <ul class="dept-bullet-list">${cappedTakeaways.map(t => `<li>${escapeHtml(t)}</li>`).join('')}</ul>`;
-        }
+    if (!hasExcel && !hasMarkdown) {
+      return `
+        <div class="dept-card ${dept.key}">
+          <div class="dept-header" onclick="toggleDeptCard('${cardId}', this)">
+            <span class="dept-dot"></span>
+            <span class="dept-name">${dept.label}</span>
+            <span class="dept-meta">No data</span>
+            <span class="dept-chevron">▼</span>
+          </div>
+          <div class="dept-body" id="${cardId}">
+            <p class="dept-empty">No feedback attributed to this department in the selected period.</p>
+          </div>
+        </div>`;
+    }
 
-        // ── 3. Recommendations ──────────────────────────────────────────────
-        let recsHtml = '';
-        const cappedRecs = block.recs.slice(0, 5);
-        if (cappedRecs.length) {
-          recsHtml = `<div class="dept-sub-label recs-header">Recommendations</div>
-            <ul class="dept-bullet-list recs">${cappedRecs.map(r => {
-              const colonIdx = r.indexOf(':');
-              const inner = colonIdx > 0
-                ? `<strong>${escapeHtml(r.slice(0, colonIdx))}</strong>:${escapeHtml(r.slice(colonIdx + 1))}`
-                : escapeHtml(r);
-              return `<li>${inner}</li>`;
-            }).join('')}</ul>`;
-        }
+    // ── 1. Contact reason priorities (Excel L2 totals, sorted by volume) ───
+    let prioritiesHtml = '';
+    if (hasExcel) {
+      const sortedL2 = Object.entries(xlsxL2Totals)
+        .sort((a, b) => b[1].volume - a[1].volume)
+        .slice(0, 6);
 
-        const weekContentId = `dwc-${dept.key}-${block.week.replace('/', '-')}`;
+      const rows = sortedL2.map(([name, info], i) => {
+        // Find top L3 reasons within this L2
+        const topL3 = Object.entries(xlsxL3Totals)
+          .filter(([, v]) => {
+            // Check L3 belongs to this L2 via taxonomy
+            const tax = lookupTaxonomy(Object.keys(xlsxL3Totals).find(k => k === Object.keys(xlsxL3Totals).find(k2 => k2 === name)) || name);
+            return v.l2 === name;
+          })
+          .sort((a, b) => b[1].volume - a[1].volume)
+          .slice(0, 3);
+
+        const l3Chips = topL3.map(([l3Name, l3Info]) =>
+          `<span class="dept-l3-chip">${escapeHtml(l3Name)} <span class="dept-l3-vol">${l3Info.volume.toLocaleString()}</span></span>`
+        ).join('');
+
+        const sid = `dr-${dept.key}-${name.toLowerCase().replace(/[^a-z0-9]/g, '-').slice(0, 35)}`;
+        const weeksStr = info.weeks.length > 1 ? `${info.weeks.length} weeks` : `week of ${info.weeks[0]}`;
+
         return `
-          <div class="dept-week-block">
-            <div class="dept-week-toggle open" onclick="toggleDeptWeek('${weekContentId}', this)">
-              <span class="dept-week-label">Week of ${block.week}</span>
-              <span class="dept-week-chevron">▼</span>
-            </div>
-            <div class="dept-week-content open" id="${weekContentId}">
-              ${reasonsHtml}${takeawaysHtml}${recsHtml}
-            </div>
+          <div class="dept-reason-row" onclick="toggleReasonDetail('${sid}')">
+            <span class="dept-reason-rank">#${i + 1}</span>
+            <span class="dept-reason-name">${escapeHtml(name)}</span>
+            <span class="dept-reason-data">${info.volume.toLocaleString()} contacts · ${weeksStr}</span>
+            <span class="dept-reason-arrow">▾</span>
+          </div>
+          <div class="dept-reason-detail" id="${sid}">
+            ${l3Chips ? `<div>${l3Chips}</div>` : ''}
           </div>`;
       }).join('');
+
+      prioritiesHtml = `<div class="dept-sub-label" style="margin-top:16px">Contact Volume by Sub-category</div>${rows}`;
+    } else if (hasMarkdown) {
+      // Fallback: aggregate markdown reasons across all weeks
+      const reasonMap = {};
+      weekBlocks.forEach(block => {
+        block.reasons.forEach((r, i) => {
+          const key = r.name.toLowerCase().trim();
+          if (!reasonMap[key]) reasonMap[key] = { name: r.name, totalVol: 0, weeks: [], rank: i + 1 };
+          reasonMap[key].totalVol += r.volume || 0;
+          reasonMap[key].weeks.push(block.week);
+        });
+      });
+      const sorted = Object.values(reasonMap)
+        .sort((a, b) => b.weeks.length !== a.weeks.length ? b.weeks.length - a.weeks.length : b.totalVol - a.totalVol)
+        .slice(0, 5);
+
+      const rows = sorted.map((r, i) => {
+        const sid = `dr-${dept.key}-${r.name.toLowerCase().replace(/[^a-z0-9]/g, '-').slice(0, 35)}`;
+        const weeksStr = r.weeks.length > 1 ? `${r.weeks.length} weeks` : `week of ${r.weeks[0]}`;
+        return `
+          <div class="dept-reason-row" onclick="toggleReasonDetail('${sid}')">
+            <span class="dept-reason-rank">#${i + 1}</span>
+            <span class="dept-reason-name">${escapeHtml(r.name)}</span>
+            <span class="dept-reason-data">${r.totalVol ? r.totalVol.toLocaleString() + ' contacts · ' : ''}${weeksStr}</span>
+            <span class="dept-reason-arrow">▾</span>
+          </div>
+          <div class="dept-reason-detail" id="${sid}"></div>`;
+      }).join('');
+      prioritiesHtml = `<div class="dept-sub-label" style="margin-top:16px">Recurring Contact Reasons</div>${rows}`;
+    }
+
+    // ── 2 & 3. Per-week takeaways + recommendations ─────────────────────────
+    // Dept-specific keyword filters — only show takeaways relevant to this dept
+    const DEPT_TAKEAWAY_TERMS = {
+      ops:  ['shipment', 'shipping', 'delivered', 'delivery', 'carrier', 'package', 'thaw', 'mispick', 'lost',
+             'delay', 'fulfil', 'fulfillment', 'damaged', 'coolant', 'dry ice', 'transit', 'tracking',
+             'wismo', 'missing order', 'undeliverable'],
+      rd:   ['food', 'quality', 'ingredient', 'recipe', 'texture', 'smell', 'color', 'illness', 'reaction',
+             'vomiting', 'diarrhea', 'allerg', 'palatab', 'won\'t eat', 'wont eat', 'safety', 'foreign object',
+             'packaging quality', 'sealing', 'shelf life', 'nutrition', 'transition', 'storage',
+             'inventory', 'out of stock', 'substitut', 'manufacture', 'formul', 'production'],
+      prod: ['account', 'cancel', 'subscription', 'billing', 'charge', 'refund', 'password', 'login',
+             'website', 'checkout', 'discount', 'promo', 'referral', 'reactivat', 'order management',
+             'payment', 'digital', 'portal', 'ux', 'ui', 'app', 'site', 'quiz', 'signup', 'onboard',
+             'reorder', 'concierge', 'intervention', 'retention', 'churn', 'lifecycle'],
+      mktg: ['email', 'sms', 'comms', 'communication', 'campaign', 'brand', 'marketing', 'notification',
+             'unsubscribe', 'link', 'message', 'pop-up', 'transactional', 'promotional'],
+    };
+
+    const deptTerms = DEPT_TAKEAWAY_TERMS[dept.key] || [];
+    const isRelevantToDept = text => {
+      if (!deptTerms.length) return true;
+      const lower = text.toLowerCase();
+      return deptTerms.some(term => lower.includes(term));
+    };
+
+    const METADATA_RE = /^(source|date range|total conversations|channels|period|week|quarter|handled|reporting period|time period|report date|data source|platform|tool|crm)\s*::?/i;
+    const isShortBullet = text =>
+      text.length > 10 &&
+      text.length <= 200 &&
+      !/^#+/.test(text.trim()) &&
+      !/^\*\*[^*]+\*\*:/.test(text.trim()) &&
+      !METADATA_RE.test(text.trim());
+
+    const weeklyDataMap = {};
+    allTakeaways.forEach(({ week: w, text }) => {
+      if (!isShortBullet(text) || !isRelevantToDept(text)) return;
+      if (!weeklyDataMap[w]) weeklyDataMap[w] = { takeaways: [], recs: [] };
+      weeklyDataMap[w].takeaways.push(text);
+    });
+    allRecs.forEach(({ week: w, text }) => {
+      if (!isShortBullet(text) || !isRelevantToDept(text)) return;
+      if (!weeklyDataMap[w]) weeklyDataMap[w] = { takeaways: [], recs: [] };
+      weeklyDataMap[w].recs.push(text);
+    });
+
+    const weeklyEntries = Object.entries(weeklyDataMap)
+      .sort((a, b) => weekSortAsc(a[0], b[0]));
+
+    let insightsHtml = '';
+    let recsHtml = '';
+
+    if (weeklyEntries.length) {
+      const weekBlocks = weeklyEntries.map(([w, wData]) => {
+        const takes = wData.takeaways.slice(0, 3);
+        const recs  = wData.recs.slice(0, 3);
+        if (!takes.length && !recs.length) return '';
+
+        const takesHtml = takes.length
+          ? `<div class="dept-sub-label" style="margin-top:10px">Key Takeaways</div>
+             <ul class="dept-bullet-list">${takes.map(t => `<li>${escapeHtml(t)}</li>`).join('')}</ul>`
+          : '';
+        const recsInner = recs.length
+          ? `<div class="dept-sub-label recs-header">Recommended Actions</div>
+             <ul class="dept-bullet-list recs">${recs.map(r => {
+               const ci = r.indexOf(':');
+               const inner = ci > 0
+                 ? `<strong>${escapeHtml(r.slice(0, ci))}</strong>:${escapeHtml(r.slice(ci + 1))}`
+                 : escapeHtml(r);
+               return `<li>${inner}</li>`;
+             }).join('')}</ul>`
+          : '';
+
+        const wcId = `dwc-${dept.key}-${w.replace('/', '-')}`;
+        return `<div class="dept-week-block">
+          <div class="dept-week-toggle open" onclick="toggleDeptWeek('${wcId}', this)">
+            <span class="dept-week-label">Week of ${w}</span>
+            <span class="dept-week-chevron">▼</span>
+          </div>
+          <div class="dept-week-content open" id="${wcId}">
+            ${takesHtml}${recsInner}
+          </div>
+        </div>`;
+      }).filter(Boolean).join('');
+
+      if (weekBlocks) insightsHtml = weekBlocks;
     }
 
     return `
@@ -4837,14 +5964,14 @@ function renderDeptRollup(allVoC, weeks) {
           <span class="dept-chevron">▼</span>
         </div>
         <div class="dept-body" id="${cardId}">
-          ${bodyHtml}
+          ${prioritiesHtml}${insightsHtml}
         </div>
       </div>`;
   }).join('');
 
   return `
     <div class="dept-rollup-section">
-      <div class="dept-rollup-heading">Feedback by Department</div>
+      <div class="dept-rollup-heading">Priorities by Department</div>
       ${cardsHtml}
     </div>`;
 }
@@ -4976,11 +6103,15 @@ function renderVocTab() {
   const trendsHtml = flags.length ? `
     <div class="voc-trends-card">
       <div class="voc-trends-title">Trends & Exec Flags</div>
-      ${flags.map(f => `
+      ${flags.map(f => {
+        const label = f.type === 'insight' ? 'takeaway' : f.type;
+        const weekTag = f.week ? `<span style="font-size:0.7rem;opacity:0.55;margin-left:6px">Wk ${f.week}</span>` : '';
+        return `
         <div class="voc-trend-row">
-          <span class="voc-trend-badge ${f.type}">${f.type}</span>
-          <span>${f.text}</span>
-        </div>`).join('')}
+          <span class="voc-trend-badge ${f.type}">${label}</span>
+          <span>${f.text}${weekTag}</span>
+        </div>`;
+      }).join('')}
     </div>` : '';
 
   // ── Week accordion cards ─────────────────────────────────────────────────────
@@ -5046,9 +6177,78 @@ function renderVocTab() {
         : `<em style="color:var(--text-muted)">No additional detail available for this reason this week.</em>`;
     };
 
-    let reasonsHtml = sectionTitle('Contact Reason Breakdown');
-    if (filteredReasons.length) {
-      // Global row index for unique IDs
+    // Build contact reason breakdown — use Excel data (L1→L2→L3) if available, else markdown
+    const xlsxEntry = VOC_REASON_XLSX[week];
+    let reasonsHtml = '';
+
+    if (xlsxEntry && xlsxEntry.l1 && xlsxEntry.l1.length) {
+      // ── Excel data with full L1→L2→L3 taxonomy ────────────────────────────
+      const xl1 = xlsxEntry.l1;
+      const xl2 = xlsxEntry.l2 || [];
+      const xl3 = xlsxEntry.l3 || [];
+      let xRi = 0;
+      const wSlug = week.replace('/', '-');
+
+      const taxonomyTable = xl1.map((r1, i1) => {
+        const l2Children = xl2.filter(r2 => r2.parent === r1.name);
+        const l1GroupId  = `vrg-xl1-${wSlug}-${i1}`;
+
+        const l2Sections = l2Children.map((r2, i2) => {
+          const l3Children = xl3.filter(r3 => r3.l1 === r1.name && r3.l2 === r2.name);
+          const l2GroupId  = `vrg-xl2-${wSlug}-${i1}-${i2}`;
+
+          const l3Rows = l3Children.map(r3 => {
+            const detailId   = `voc-rd-xl-${wSlug}-${xRi++}`;
+            const pctWidth   = Math.min(100, parseFloat(r3.pct) || 0);
+            const summaryTxt = buildReasonSummary(r3);
+            return `<tr class="voc-reason-row" onclick="toggleVocReasonDetail('${detailId}',this)" style="cursor:pointer">
+              <td style="padding-left:12px;font-size:0.85rem">${escapeHtml(r3.name)}</td>
+              <td style="font-size:0.85rem">${r3.volume ? r3.volume.toLocaleString() : '—'}</td>
+              <td style="font-size:0.85rem">${escapeHtml(r3.pct || '—')}</td>
+              <td style="text-align:right;white-space:nowrap">
+                <div class="voc-pct-bar" style="display:inline-block;vertical-align:middle;margin-right:6px">
+                  <div class="voc-pct-track"><div class="voc-pct-fill" style="width:${pctWidth}%"></div></div>
+                </div>
+                <span class="voc-reason-arrow" style="font-size:0.65rem;color:var(--text-muted)">▾</span>
+              </td>
+            </tr>
+            <tr class="voc-reason-detail-row" id="${detailId}" style="display:none">
+              <td colspan="4" style="padding:6px 12px 10px 24px;font-size:0.82rem;line-height:1.6;color:var(--text);border-top:none">${summaryTxt}</td>
+            </tr>`;
+          }).join('');
+
+          return `<div class="voc-reason-group" style="margin:0 0 2px 16px;border-radius:6px">
+            <div class="voc-reason-group-header" style="padding:7px 10px" onclick="toggleReasonGroup('${l2GroupId}',this)">
+              <span class="voc-reason-group-title-text" style="font-size:0.85rem;font-weight:500">${escapeHtml(r2.name)}</span>
+              <span style="font-size:0.78rem;color:var(--text-muted);margin-left:auto;margin-right:8px">${r2.volume ? r2.volume.toLocaleString() : '—'} · ${escapeHtml(r2.pct || '—')}</span>
+              <span class="voc-reason-group-chevron" style="font-size:0.7rem">▼</span>
+            </div>
+            <div class="voc-reason-group-body" id="${l2GroupId}">
+              ${l3Children.length ? `<table class="voc-detail-reasons" style="margin:0">
+                <thead><tr><th>Contact Reason</th><th>Volume</th><th>%</th><th></th></tr></thead>
+                <tbody>${l3Rows}</tbody>
+              </table>` : '<p style="padding:6px 12px;font-size:0.82rem;color:var(--text-muted);margin:0">No sub-reasons.</p>'}
+            </div>
+          </div>`;
+        }).join('');
+
+        return `<div class="voc-reason-group" style="margin-bottom:6px">
+          <div class="voc-reason-group-header" onclick="toggleReasonGroup('${l1GroupId}',this)">
+            <span class="voc-reason-group-title-text">${escapeHtml(r1.name)}</span>
+            <span style="font-size:0.8rem;color:var(--text-muted);margin-left:auto;margin-right:8px">${r1.volume ? r1.volume.toLocaleString() : '—'} · ${escapeHtml(r1.pct || '—')}</span>
+            <span class="voc-reason-group-chevron">▼</span>
+          </div>
+          <div class="voc-reason-group-body" id="${l1GroupId}" style="padding:4px 0">
+            ${l2Children.length ? l2Sections : '<p style="padding:6px 12px;font-size:0.82rem;color:var(--text-muted);margin:0">No sub-categories.</p>'}
+          </div>
+        </div>`;
+      }).join('');
+
+      reasonsHtml = sectionTitle('Contact Reason Breakdown') + taxonomyTable;
+
+    } else if (filteredReasons.length) {
+      // ── Fallback: markdown reasons ─────────────────────────────────────────
+      reasonsHtml = sectionTitle('Contact Reason Breakdown');
       let globalRi = 0;
       reasonsHtml += reasonGroups.map(group => {
         if (!group.rows.length) return '';
@@ -5068,35 +6268,34 @@ function renderVocTab() {
               </td>
             </tr>
             <tr class="voc-reason-detail-row" id="${detailId}" style="display:none">
-              <td colspan="4" style="padding:8px 12px 12px 16px;background:var(--surface-alt);font-size:0.82rem;line-height:1.6;color:var(--text);border-top:none">
+              <td colspan="4" style="padding:8px 12px 12px 16px;font-size:0.82rem;line-height:1.6;color:var(--text);border-top:none">
                 ${summaryText}
               </td>
             </tr>`;
         }).join('');
         const groupId = 'vrg-' + week.replace('/', '-') + '-' + reasonGroups.indexOf(group);
         if (group.title) {
-          return `
-            <div class="voc-reason-group">
-              <div class="voc-reason-group-header open" onclick="toggleReasonGroup('${groupId}', this)">
-                <span class="voc-reason-group-title-text">${escapeHtml(group.title)}</span>
-                <span class="voc-reason-group-chevron">▼</span>
-              </div>
-              <div class="voc-reason-group-body open" id="${groupId}">
-                <table class="voc-detail-reasons">
-                  <thead><tr><th>Contact Reason</th><th>Volume</th><th>% of Total</th><th></th></tr></thead>
-                  <tbody>${tableRows}</tbody>
-                </table>
-              </div>
-            </div>`;
+          return `<div class="voc-reason-group">
+            <div class="voc-reason-group-header open" onclick="toggleReasonGroup('${groupId}',this)">
+              <span class="voc-reason-group-title-text">${escapeHtml(group.title)}</span>
+              <span class="voc-reason-group-chevron">▼</span>
+            </div>
+            <div class="voc-reason-group-body open" id="${groupId}">
+              <table class="voc-detail-reasons">
+                <thead><tr><th>Contact Reason</th><th>Volume</th><th>% of Total</th><th></th></tr></thead>
+                <tbody>${tableRows}</tbody>
+              </table>
+            </div>
+          </div>`;
         }
-        return `
-          <table class="voc-detail-reasons">
-            <thead><tr><th>Contact Reason</th><th>Volume</th><th>% of Total</th><th></th></tr></thead>
-            <tbody>${tableRows}</tbody>
-          </table>`;
+        return `<table class="voc-detail-reasons">
+          <thead><tr><th>Contact Reason</th><th>Volume</th><th>% of Total</th><th></th></tr></thead>
+          <tbody>${tableRows}</tbody>
+        </table>`;
       }).join('');
     } else {
-      reasonsHtml += '<p class="voc-no-data">No contact reason data for this week.</p>';
+      reasonsHtml = sectionTitle('Contact Reason Breakdown') +
+        '<p class="voc-no-data">No contact reason data for this week.</p>';
     }
 
     // 2. Sentiment breakdown table
@@ -5182,58 +6381,56 @@ function renderVocTab() {
     ].filter(Boolean);
     const tagBadges = tagParts.map(t => `<span class="voc-oneoff-tag">${escapeHtml(t)}</span>`).join('');
 
-    // ── High-level summary block ───────────────────────────────────────────────
-    const summaryText = entry.summary || '';
-    const summaryHtml = summaryText
-      ? `<div class="voc-summary-block">${escapeHtml(summaryText)}</div>`
-      : '';
+    // High-level summary block removed per user request
+    const summaryHtml = '';
 
-    // ── Compact contact reason table (top, no expand rows) ────────────────────
-    const topReasons = filteredReasons.filter(r => !isReasonHeader(r)).slice(0, 10);
-    const compactReasonTable = topReasons.length
-      ? `<div class="voc-compact-reasons">
-          <div class="voc-compact-reasons-title">Contact Reason Breakdown</div>
-          <table class="voc-detail-reasons voc-compact-table">
-            <thead><tr><th>Contact Reason</th><th>Volume</th><th>%</th></tr></thead>
-            <tbody>${topReasons.map(r => {
-              const pctNum = parseFloat(r.pct) || 0;
-              return `<tr>
-                <td>${escapeHtml(r.name)}</td>
-                <td>${r.volume ? r.volume.toLocaleString() : '—'}</td>
-                <td>
-                  <div style="display:flex;align-items:center;gap:6px">
-                    <span style="min-width:36px;font-size:0.78rem">${r.pct || '—'}</span>
-                    <div class="voc-pct-track" style="flex:1;max-width:80px"><div class="voc-pct-fill" style="width:${Math.min(100,pctNum)}%"></div></div>
-                  </div>
-                </td>
-              </tr>`;
-            }).join('')}</tbody>
-          </table>
-        </div>`
-      : '';
-
-    // Body: prefer raw markdown if available, otherwise fall back to structured sections
-    const bodyHtml = entry.raw
+    // Body: markdown narrative (sentiment, quotes, takeaways) — separate from reasons
+    const markdownBodyHtml = entry.raw
       ? renderOneoffMarkdown(entry.raw)
-      : (reasonsHtml + sentimentHtml + quotesHtml + takeawaysHtml);
+      : (sentimentHtml + quotesHtml + takeawaysHtml);
+
+    // Fallback: derive total from Excel L1 sum if markdown didn't supply it
+    const xlEntry = (typeof VOC_REASON_XLSX !== 'undefined') ? VOC_REASON_XLSX[week] : null;
+    const xlTotal = xlEntry?.l1?.reduce((s, r) => s + (r.volume || 0), 0) || 0;
+    const convoCount = entry.totalConvos
+      ? parseInt(entry.totalConvos)
+      : xlTotal || null;
 
     return `<div class="voc-oneoff-card">
       <div class="voc-oneoff-card-header" onclick="toggleVocOneoffCard('${cardId}', this)">
         <span class="voc-oneoff-card-title">Week of ${week}</span>
         <span class="voc-oneoff-card-meta" style="display:flex;align-items:center;gap:6px">
           ${tagBadges}
-          ${entry.totalConvos ? `<span style="color:var(--text-muted);font-size:0.78rem">${parseInt(entry.totalConvos).toLocaleString()} conversations</span>` : ''}
+          ${convoCount ? `<span style="color:var(--text-muted);font-size:0.78rem">${convoCount.toLocaleString()} conversations</span>` : ''}
         </span>
         <button class="voc-oneoff-delete-btn" onclick="deleteVoCWeek(event, '${week}')" title="Delete this week">✕</button>
         <span class="voc-oneoff-card-chevron">▼</span>
       </div>
       <div class="voc-oneoff-card-body" id="${cardId}" style="display:none">
-        ${summaryHtml}${compactReasonTable}${bodyHtml}
+        ${summaryHtml}${reasonsHtml}${markdownBodyHtml}
       </div>
     </div>`;
   }).join('');
 
-  el.innerHTML = trendsHtml + cardsHtml + renderDeptRollup(allVoC, weeks);
+  const shippingChartHtml = renderShippingChart(allVoC, weeks);
+
+  el.innerHTML = trendsHtml + cardsHtml + shippingChartHtml + renderDeptRollup(allVoC, weeks);
+
+  // Draw shipping chart after DOM is ready
+  requestAnimationFrame(() => {
+    drawShippingChart(allVoC, weeks);
+    // Populate the reason xlsx week select in the upload strip
+    const rxSel = document.getElementById('vocReasonXlsxWeekSelect');
+    if (rxSel) {
+      const curVal = rxSel.value;
+      rxSel.innerHTML = '<option value="">— select week —</option>' +
+        Object.keys(allVoC).sort((a, b) => {
+          const [am, ad] = a.split('/').map(Number);
+          const [bm, bd] = b.split('/').map(Number);
+          return bm !== am ? bm - am : bd - ad;
+        }).map(w => `<option value="${w}" ${w === curVal ? 'selected' : ''}>Week of ${w}</option>`).join('');
+    }
+  });
 }
 
 
@@ -5296,93 +6493,107 @@ function toggleReasonDetail(detailId) {
   }
 }
 
-// Build cross-week trend flags from all available VoC data
+// Build exec-facing top trends from all filtered VoC data
 function buildVoCTrends(allVoC, weeks) {
   const flags = [];
-  if (weeks.length < 2) return flags;
+  if (!weeks.length) return flags;
 
-  // Collect top reasons across all weeks (sorted newest first = weeks[0])
-  // Exclude header/category rows (no numeric pct) — only keep real data rows
-  const isDataRow = r => /[0-9]/.test(r.pct || '') && !r.isHeader;
-  const reasonsByWeek = weeks.map(w => (allVoC[w].reasons || []).filter(isDataRow));
+  const xlsxFor = w => (typeof VOC_REASON_XLSX !== 'undefined' && VOC_REASON_XLSX[w]) || null;
+  const METADATA_RE = /^(source|date range|total conversations|channels|period|week|quarter|handled|reporting period|time period|report date|data source|platform|tool|crm)\s*::?/i;
+  const EXCLUDED_L1 = new Set(['CS Admin', 'Other']);
+  const isShortBullet = t => t && t.length > 10 && t.length <= 200 &&
+    !/^#+/.test(t.trim()) && !/^\*\*[^*]+\*\*:/.test(t.trim()) &&
+    !METADATA_RE.test(t.trim());
 
-  // 1. Persistent top reasons — appear in top 3 across all weeks
-  const allNames = reasonsByWeek.map(rs => rs.slice(0, 3).map(r => r.name.toLowerCase()));
-  if (allNames.length >= 2) {
-    const consistent = allNames[0].filter(name =>
-      allNames.slice(1).every(weekNames => weekNames.some(n => n.includes(name.split(' ')[0]))));
-    consistent.forEach(name => {
-      const displayName = allVoC[weeks[0]].reasons.find(r => r.name.toLowerCase().includes(name.split(' ')[0]))?.name || name;
-      flags.push({ type: 'trend', text: `<b>${escapeHtml(displayName)}</b> has been a top-3 contact reason for all ${weeks.length} weeks tracked.` });
+  // ── 1. Top contact drivers (Excel L2, aggregated across all weeks) ─────────
+  const xlWeeks = weeks.filter(w => xlsxFor(w)?.l2?.length);
+  if (xlWeeks.length) {
+    const l2Totals = {};
+    xlWeeks.forEach(w => {
+      xlsxFor(w).l2.forEach(r2 => {
+        if (EXCLUDED_L1.has(r2.parent)) return;  // skip CS Admin + Other
+        if (!l2Totals[r2.name]) l2Totals[r2.name] = { volume: 0, l1: r2.parent };
+        l2Totals[r2.name].volume += r2.volume || 0;
+      });
     });
+    const topL2 = Object.entries(l2Totals)
+      .sort((a, b) => b[1].volume - a[1].volume)
+      .slice(0, 3);
+    const grandTotal = Object.values(l2Totals).reduce((s, v) => s + v.volume, 0);
+    topL2.forEach(([name, info], i) => {
+      const pct = grandTotal ? ((info.volume / grandTotal) * 100).toFixed(1) + '%' : '';
+      flags.push({ type: 'trend', text: `#${i + 1} driver: <b>${escapeHtml(name)}</b> — ${info.volume.toLocaleString()} contacts${pct ? ' (' + pct + ')' : ''}.` });
+    });
+  } else {
+    // Fallback: markdown reasons
+    const reasonTotals = {};
+    weeks.forEach(w => {
+      (allVoC[w].reasons || [])
+        .filter(r => !r.isHeader && /[0-9]/.test(r.pct || ''))
+        .forEach(r => {
+          if (!reasonTotals[r.name]) reasonTotals[r.name] = 0;
+          reasonTotals[r.name] += r.volume || 0;
+        });
+    });
+    Object.entries(reasonTotals)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .forEach(([name, vol], i) => {
+        flags.push({ type: 'trend', text: `#${i + 1} driver: <b>${escapeHtml(name)}</b> — ${vol.toLocaleString()} contacts.` });
+      });
   }
 
-  // 2. Volume changes week-over-week for top reason
+  // ── 2. Volume change (most recent vs prior week) ───────────────────────────
   if (weeks.length >= 2) {
-    const curr = reasonsByWeek[0];
-    const prev = reasonsByWeek[1];
-    const currWeek = weeks[0];
-    const prevWeek = weeks[1];
-    curr.slice(0, 5).forEach(r => {
-      const prevMatch = prev.find(p => p.name.toLowerCase().split(' ')[0] === r.name.toLowerCase().split(' ')[0]);
-      if (!prevMatch) return;
-      const currPct = parseFloat(r.pct);
-      const prevPct = parseFloat(prevMatch.pct);
-      // Skip if either side has no real numeric value
-      if (!currPct || !prevPct) return;
-      const diff = currPct - prevPct;
-      if (diff >= 2) {
-        flags.push({ type: 'flag', text: `<b>${escapeHtml(r.name)}</b> jumped <b>+${diff.toFixed(1)} pp</b> (${prevWeek}: ${prevMatch.pct} → ${currWeek}: ${r.pct}).` });
-      } else if (diff <= -2) {
-        flags.push({ type: 'watch', text: `<b>${escapeHtml(r.name)}</b> dropped <b>${diff.toFixed(1)} pp</b> (${prevWeek}: ${prevMatch.pct} → ${currWeek}: ${r.pct}).` });
+    const currWeek = weeks[0], prevWeek = weeks[1];
+    const currTotal = parseInt((allVoC[currWeek].totalConvos || '').replace(/,/g, '')) || 0;
+    const prevTotal = parseInt((allVoC[prevWeek].totalConvos || '').replace(/,/g, '')) || 0;
+    if (currTotal && prevTotal) {
+      const diff = currTotal - prevTotal;
+      const pct = Math.abs((diff / prevTotal) * 100).toFixed(0);
+      if (Math.abs(diff) > 100) {
+        const dir = diff > 0 ? 'up' : 'down';
+        const type = diff > 0 ? 'watch' : 'stable';
+        flags.push({ type, text: `Contact volume <b>${dir} ${pct}%</b> week-over-week (${prevWeek}: ${prevTotal.toLocaleString()} → ${currWeek}: ${currTotal.toLocaleString()}).` });
       }
-    });
-  }
-
-  // 3. New reason appearing in top 5 that wasn't there before
-  if (weeks.length >= 2) {
-    const currNames = reasonsByWeek[0].slice(0, 5).map(r => r.name.toLowerCase());
-    const prevNames = reasonsByWeek[1].map(r => r.name.toLowerCase());
-    currNames.forEach((name, i) => {
-      const wasPresent = prevNames.some(p => p.split(' ')[0] === name.split(' ')[0]);
-      if (!wasPresent) {
-        const r = reasonsByWeek[0][i];
-        flags.push({ type: 'flag', text: `<b>${escapeHtml(r.name)}</b> is a new entrant in the top 5 this week (${r.pct}).` });
-      }
-    });
-  }
-
-  // 4. Total conversation volume change
-  const currTotal = parseInt((allVoC[weeks[0]].totalConvos || '').replace(/,/g, '')) || 0;
-  const prevTotal = parseInt((allVoC[weeks[1]].totalConvos || '').replace(/,/g, '')) || 0;
-  if (currTotal && prevTotal) {
-    const diff = currTotal - prevTotal;
-    const pct = ((diff / prevTotal) * 100).toFixed(0);
-    if (Math.abs(diff) > 200) {
-      const type = diff > 0 ? 'watch' : 'stable';
-      const dir  = diff > 0 ? 'up' : 'down';
-      flags.push({ type, text: `Total tagged conversation volume is <b>${dir} ${Math.abs(pct)}%</b> (${weeks[1]}: ${prevTotal.toLocaleString()} → ${weeks[0]}: ${currTotal.toLocaleString()}).` });
     }
   }
 
-  // 5. Repeating takeaway themes — keyword overlap across weeks
-  const allTakeaways = weeks.map(w => (allVoC[w].takeaways || []).join(' ').toLowerCase());
-  const themes = ['shipping', 'cancel', 'refund', 'product fit', 'financial', 'escalat'];
-  themes.forEach(theme => {
-    const weeksWithTheme = allTakeaways.filter(t => t.includes(theme)).length;
-    if (weeksWithTheme >= 2) {
-      flags.push({ type: 'trend', text: `Theme "<b>${theme}</b>" appears in takeaways across ${weeksWithTheme} of ${weeks.length} weeks — consistent area of customer friction.` });
-    }
+  // ── 3. Key takeaways from md files — deduplicated, across all weeks ────────
+  const seenTakeaways = new Set();
+  weeks.forEach(w => {
+    const e = allVoC[w] || {};
+    (e.takeaways || []).filter(isShortBullet).forEach(t => {
+      const key = t.toLowerCase().replace(/\s+/g, ' ').slice(0, 70);
+      if (seenTakeaways.has(key)) return;
+      seenTakeaways.add(key);
+      flags.push({ type: 'insight', text: escapeHtml(t), week: w });
+    });
   });
 
-  // Deduplicate similar flags
-  const seen = new Set();
-  return flags.filter(f => {
-    const key = f.text.replace(/<[^>]+>/g, '').slice(0, 40);
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
+  // ── 4. Notable L2 shift (most recent vs prior, only the biggest mover) ─────
+  if (weeks.length >= 2) {
+    const currXl = xlsxFor(weeks[0]), prevXl = xlsxFor(weeks[1]);
+    if (currXl?.l2 && prevXl?.l2) {
+      let biggest = null;
+      currXl.l2.forEach(c2 => {
+        if (EXCLUDED_L1.has(c2.parent)) return;  // skip CS Admin + Other
+        const p2 = prevXl.l2.find(p => p.name === c2.name);
+        if (!p2) return;
+        const diff = parseFloat(c2.pct) - parseFloat(p2.pct);
+        if (!biggest || Math.abs(diff) > Math.abs(biggest.diff)) {
+          biggest = { name: c2.name, diff, currPct: c2.pct, prevPct: p2.pct };
+        }
+      });
+      if (biggest && Math.abs(biggest.diff) >= 2) {
+        const dir = biggest.diff > 0 ? 'up' : 'down';
+        const type = biggest.diff > 0 ? 'flag' : 'watch';
+        flags.push({ type, text: `<b>${escapeHtml(biggest.name)}</b> ${dir} <b>${biggest.diff > 0 ? '+' : ''}${biggest.diff.toFixed(1)} pp</b> week-over-week (${escapeHtml(biggest.prevPct)} → ${escapeHtml(biggest.currPct)}).` });
+      }
+    }
+  }
+
+  return flags.slice(0, 5);
 }
 
 // ── Volume tab renderer ────────────────────────────────────────────────────────
@@ -5909,6 +7120,13 @@ function render() {
     vocOneoffInput.value = '';
   });
 
+  // Wire up contact reason Excel file input
+  const vocReasonXlsxInput = document.getElementById('vocReasonXlsxInput');
+  vocReasonXlsxInput.addEventListener('change', e => {
+    if (e.target.files[0]) handleVoCReasonXlsxFile(e.target.files[0]);
+    vocReasonXlsxInput.value = '';
+  });
+
   // Wire up drag-and-drop on scorecard drop zone
   const scZone = document.getElementById('scorecardDropZone');
   scZone.addEventListener('dragover', e => {
@@ -5973,6 +7191,9 @@ function render() {
     const oneoffRaw = localStorage.getItem(LS_KEY_VOC_ONEOFF);
     if (oneoffRaw) VOC_ONEOFF = JSON.parse(oneoffRaw) || [];
   } catch (_) {}
+
+  // Restore cached contact reason Excel data
+  VOC_REASON_XLSX = loadVoCReasonXlsxCache();
 
   // Restore cached volume data
   try {
